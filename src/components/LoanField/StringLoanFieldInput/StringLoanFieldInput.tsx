@@ -1,14 +1,14 @@
 import type { StringFieldMetadata } from "../../../types";
 
-interface LoanStringFieldProps {
+interface StringLoanFieldInputProps {
 	field: StringFieldMetadata;
 	value?: string;
 }
 
-const LoanStringField = ({ field }: LoanStringFieldProps) => {
+const StringLoanFieldInput = ({ field }: StringLoanFieldInputProps) => {
 	return (
 		<input type="text" name={field.field} pattern={field.conditions.regex} />
 	);
 };
 
-export default LoanStringField;
+export default StringLoanFieldInput;

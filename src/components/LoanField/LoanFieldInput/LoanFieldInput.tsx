@@ -1,5 +1,12 @@
-import { isStringField } from "../../../utils/field-types";
-import LoanStringField from "../LoanStringField/LoanStringField";
+import {
+	isStringField,
+	isDateField,
+	isMoneyField,
+} from "../../../utils/field-types";
+import StringLoanFieldInput from "../StringLoanFieldInput/StringLoanFieldInput";
+import MoneyLoanFieldInput from "../MoneyLoanFieldInput/MoneyLoanFieldInput";
+import DateLoanFieldInput from "../DateLoanFieldInput/DateLoanFieldInput";
+
 import type { FieldMetadata } from "../../../types";
 
 interface LoanFieldInputProps {
@@ -9,7 +16,13 @@ interface LoanFieldInputProps {
 
 const LoanFieldInput = ({ field }: LoanFieldInputProps) => {
 	if (isStringField(field)) {
-		return <LoanStringField field={field} />;
+		return <StringLoanFieldInput field={field} />;
+	}
+	if (isMoneyField(field)) {
+		return <MoneyLoanFieldInput field={field} />;
+	}
+	if (isDateField(field)) {
+		return <DateLoanFieldInput field={field} />;
 	}
 
 	return false;

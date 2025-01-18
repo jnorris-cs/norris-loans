@@ -15,6 +15,11 @@ export type StringFieldMetadata = FieldMetadata & {
 	conditions: { regex: string };
 };
 
+export type MoneyFieldMetadata = FieldMetadata & {
+	type: "money";
+	conditions: { maxValue: number; minValue: number };
+};
+
 export type LoanEntityMetadata = {
 	name: EntityType;
 	fields: FieldMetadata[];
