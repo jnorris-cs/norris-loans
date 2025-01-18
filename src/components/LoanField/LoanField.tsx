@@ -7,6 +7,7 @@ import {
 } from "../../reducers/FieldReducer";
 import { useCallback, useEffect, useMemo, useReducer } from "react";
 import type { FieldMetadata, InputValue } from "../../types";
+import {useSaveField} from '../../hooks/useSaveField/useSaveField'
 
 import "./LoanField.scss";
 
@@ -50,18 +51,10 @@ const LoanField = ({ field, value = "" }: LoanFieldProps) => {
 		dispatch({ type: "blur", value: canSave });
 	}, [dispatch, state.hasError, state.value, state.initialValue]);
 
-	useEffect(() => {
-		if (!state.isSaving) {
-			return;
-		}
-
-		setTimeout(() => {
-			dispatch({ type: "save-success" });
-			setTimeout(() => {
-				dispatch({ type: "clear-save-success" });
-			}, 3000);
-		}, 3000);
-	}, [state.isSaving]);
+	useSaveField({
+		isSaving: state.isSaving,
+		dispatch
+	})
 
 	return (
 		<div className={classNames}>

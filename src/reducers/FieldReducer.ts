@@ -16,7 +16,7 @@ export type FieldChangeAction = Pick<
 	"hasError" | "errorMessage" | "value"
 >;
 
-type FieldAction =
+export type FieldAction =
 	| { type: "focus" }
 	| {
 			type: "change";
