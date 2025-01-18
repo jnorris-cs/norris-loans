@@ -5,7 +5,7 @@ import {
 	initialState,
 	FieldChangeAction,
 } from "../../reducers/FieldReducer";
-import { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import type { FieldMetadata, InputValue } from "../../types";
 
 import "./LoanField.scss";
@@ -47,11 +47,11 @@ const LoanField = ({ field, value = "" }: LoanFieldProps) => {
 		});
 	const onBlur = useCallback(() => {
 		const canSave = !state.hasError && state.value !== state.initialValue;
-		console.log(state.value, state.initialValue);
-
 		dispatch({ type: "blur", value: canSave });
+	}, [dispatch, state.hasError, state.value, state.initialValue]);
 
-		if (!canSave) {
+	useEffect(() => {
+		if (!state.isSaving) {
 			return;
 		}
 
@@ -61,7 +61,7 @@ const LoanField = ({ field, value = "" }: LoanFieldProps) => {
 				dispatch({ type: "clear-save-success" });
 			}, 3000);
 		}, 3000);
-	}, [dispatch, state.hasError, state.value, state.initialValue]);
+	}, [state.isSaving]);
 
 	return (
 		<div className={classNames}>
