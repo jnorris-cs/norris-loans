@@ -2,7 +2,7 @@ import type { InputValue } from "../types";
 
 interface State {
 	isDirty: boolean; // has user blurred once?
-  isFocused: boolean;
+	isFocused: boolean;
 	hasError: boolean;
 	errorMessage?: string;
 	initialValue?: InputValue;
@@ -11,28 +11,30 @@ interface State {
 	wasSaveSuccussful?: boolean;
 }
 
-export type FieldChangeAction = Pick<State, "hasError" | "errorMessage" | "value">;
+export type FieldChangeAction = Pick<
+	State,
+	"hasError" | "errorMessage" | "value"
+>;
 
 type FieldAction =
-	| { type: "initialize"; value: InputValue | undefined }
-	| { type: "focus-change"; value: boolean }
+	| {
+			type: "initialize";
+			value: InputValue | undefined;
+	  }
+	| { type: "focus" }
 	| {
 			type: "change";
 			value: FieldChangeAction;
 	  }
-	| {
-			type: "blur";
-	  }
-	| {
-			type: "save-success";
-	  }
+	| { type: "blur" }
+	| { type: "save-success" }
 	| {
 			type: "save-failure";
 			value: State["errorMessage"];
 	  };
 
 export const initialState: State = {
-  isFocused: false,
+	isFocused: false,
 	isDirty: false,
 	hasError: false,
 	isSaving: false,
@@ -46,22 +48,25 @@ export const fieldReducer = (state: State, action: FieldAction): State => {
 				initialValue: action.value,
 				value: action.value,
 			};
-    case "focus-change":
-      return { ...state,  isFocused: action.value};
+		case "focus":
+			return { ...state, isFocused: true };
 		case "change":
 			return { ...state, ...action.value };
 		case "blur":
-      // if value hasnt change, go back to initial values
+			// eslint-disable-next-line no-case-declarations
+			const newState = { ...state, isDirty: true, isFocused: false };
+
+			// if value hasnt change, go back to initial values
 			if (state.value === state.initialValue) {
-				return { ...state, isDirty: false };
+				return { ...newState, isDirty: false };
 			}
-      // if value is invalid, dont save it
-      if (state.hasError){
-        return { ...state, isDirty: true };     
-      }
+			// if value is invalid, dont save it
+			if (state.hasError) {
+				return newState;
+			}
 
 			// TODO add saving here
-			return { ...state, isSaving: true, isDirty: true };
+			return { ...newState, isSaving: true };
 		case "save-success":
 			return {
 				...initialState,

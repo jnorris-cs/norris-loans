@@ -22,47 +22,42 @@ const LoanField = ({ field, value }: LoanFieldProps) => {
 	}, [value, dispatch]);
 
 	const classNames = useMemo<string>(() => {
-		const classes = ["mb3", "loan-field"];	
+		const classes = ["mb3", "loan-field"];
 
 		if (state.hasError && state.isDirty) {
 			classes.push("loan-field__invalid");
-		} else if (!state.hasError){
+		} else if (!state.hasError) {
 			classes.push("loan-field__valid");
 		}
 
 		return classes.join(" ");
 	}, [state.isDirty, state.hasError]);
 
-	// we dont want to show red error messages if field is in focus
-	const onFocus = () => dispatch({ type: 'focus-change', value: true });
-	const onLostFocus = () => dispatch({ type: 'focus-change', value: false });
-
 	// handle input events
+	const onFocus = () => dispatch({ type: "focus" });
 	const onChange = (payload: FieldChangeAction) =>
 		dispatch({
 			type: "change",
 			value: payload,
 		});
-	const onBlur = () => {
-		console.log('blur');
-		dispatch({ type: 'blur' })
-	}
+	const onBlur = () => dispatch({ type: "blur" });
 
 	console.log("test 1", field.field);
 
 	return (
-		<div className={classNames} onFocus={onFocus} onBlur={onLostFocus}>
+		<div className={classNames}>
 			<label className="db mb1" htmlFor={field.field}>
 				{field.display}
 			</label>
-			<LoanFieldInput field={field} onChange={onChange} onBlur={onBlur} />
-			{
-				state.errorMessage && (
-					<div className="loan-field-error-message">
-						{state.errorMessage}
-					</div>
-				)
-			}
+			<LoanFieldInput
+				field={field}
+				onChange={onChange}
+				onBlur={onBlur}
+				onFocus={onFocus}
+			/>
+			{state.errorMessage && (
+				<div className="loan-field-error-message">{state.errorMessage}</div>
+			)}
 		</div>
 	);
 };

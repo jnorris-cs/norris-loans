@@ -3,45 +3,62 @@ import type { MoneyFieldMetadata } from "../../../types";
 import { useCallback } from "react";
 import type { StandardInputProps } from "../types";
 
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-})
+const formatter = new Intl.NumberFormat("en-US", {
+	style: "currency",
+	currency: "USD",
+});
 
 type MoneyLoanFieldInputProps = {
 	field: MoneyFieldMetadata;
 	value?: number;
-} & StandardInputProps
+} & StandardInputProps;
 
-const MoneyLoanFieldInput = ({ field, value, onBlur, onChange }: MoneyLoanFieldInputProps) => {
-	const onComponentChange = useCallback((stringValue: string | undefined): void => {
-		const numericValue = Number(stringValue);
-		const errorMessages: string[] = []
-		const { minValue, maxValue } = field.conditions;
-		const isMinCorrect = !minValue || minValue <= numericValue;
-		const isMaxCorrect = !maxValue || maxValue >= numericValue;
+const MoneyLoanFieldInput = ({
+	field,
+	value,
+	onBlur,
+	onChange,
+	onFocus,
+}: MoneyLoanFieldInputProps) => {
+	const onComponentChange = useCallback(
+		(stringValue: string | undefined): void => {
+			const numericValue = Number(stringValue);
+			const errorMessages: string[] = [];
+			const { minValue, maxValue } = field.conditions;
+			const isMinCorrect = !minValue || minValue <= numericValue;
+			const isMaxCorrect = !maxValue || maxValue >= numericValue;
 
-		if (!isMinCorrect) {
-			errorMessages.push(`must be greater than or equal to ${formatter.format(minValue)}`)
-		}
-		if (!isMaxCorrect) {
-			errorMessages.push(`must be less than or equal to ${formatter.format(maxValue)}`)
-		}
+			if (!isMinCorrect) {
+				errorMessages.push(
+					`must be greater than or equal to ${formatter.format(minValue)}`,
+				);
+			}
+			if (!isMaxCorrect) {
+				errorMessages.push(
+					`must be less than or equal to ${formatter.format(maxValue)}`,
+				);
+			}
 
-		onChange({
-			hasError: !isMinCorrect || !isMaxCorrect,
-			errorMessage: errorMessages.join(' '),
-			value: numericValue
-		})
-	}, [onChange])
-	
-	return <CurrencyInput 
-		prefix="$" 
-		value={value}
-		name={field.field} 
-		decimalsLimit={2} 
-		onValueChange={onComponentChange}
-		onBlur={onBlur} />;
+			onChange({
+				hasError: !isMinCorrect || !isMaxCorrect,
+				errorMessage: errorMessages.join(" "),
+				value: numericValue,
+			});
+		},
+		[onChange],
+	);
+
+	return (
+		<CurrencyInput
+			prefix="$"
+			value={value}
+			name={field.field}
+			decimalsLimit={2}
+			onValueChange={onComponentChange}
+			onBlur={onBlur}
+			onFocus={onFocus}
+		/>
+	);
 };
 
 export default MoneyLoanFieldInput;

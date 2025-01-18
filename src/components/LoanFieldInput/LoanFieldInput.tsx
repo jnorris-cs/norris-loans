@@ -20,6 +20,7 @@ const LoanFieldInput = ({
 	value,
 	onChange,
 	onBlur,
+	onFocus,
 }: LoanFieldInputProps) => {
 	if (isStringField(field)) {
 		return (
@@ -28,6 +29,7 @@ const LoanFieldInput = ({
 				value={value}
 				onChange={onChange}
 				onBlur={onBlur}
+				onFocus={onFocus}
 			/>
 		);
 	}
@@ -38,6 +40,7 @@ const LoanFieldInput = ({
 				value={value}
 				onChange={onChange}
 				onBlur={onBlur}
+				onFocus={onFocus}
 			/>
 		);
 	}
@@ -48,6 +51,7 @@ const LoanFieldInput = ({
 				value={value}
 				onChange={onChange}
 				onBlur={onBlur}
+				onFocus={onFocus}
 			/>
 		);
 	}
