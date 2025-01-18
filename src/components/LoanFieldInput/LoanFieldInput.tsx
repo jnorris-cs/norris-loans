@@ -6,23 +6,50 @@ import {
 import StringLoanFieldInput from "./StringLoanFieldInput/StringLoanFieldInput";
 import MoneyLoanFieldInput from "./MoneyLoanFieldInput/MoneyLoanFieldInput";
 import DateLoanFieldInput from "./DateLoanFieldInput/DateLoanFieldInput";
+import type { StandardInputProps } from "./types";
 
-import type { FieldMetadata } from "../../types";
+import type { FieldMetadata, InputValue } from "../../types";
 
-interface LoanFieldInputProps {
+type LoanFieldInputProps = {
 	field: FieldMetadata;
-	value?: unknown;
-}
+	value?: InputValue;
+} & StandardInputProps;
 
-const LoanFieldInput = ({ field }: LoanFieldInputProps) => {
+const LoanFieldInput = ({
+	field,
+	value,
+	onChange,
+	onBlur,
+}: LoanFieldInputProps) => {
 	if (isStringField(field)) {
-		return <StringLoanFieldInput field={field} />;
+		return (
+			<StringLoanFieldInput
+				field={field}
+				value={value}
+				onChange={onChange}
+				onBlur={onBlur}
+			/>
+		);
 	}
 	if (isMoneyField(field)) {
-		return <MoneyLoanFieldInput field={field} />;
+		return (
+			<MoneyLoanFieldInput
+				field={field}
+				value={value}
+				onChange={onChange}
+				onBlur={onBlur}
+			/>
+		);
 	}
 	if (isDateField(field)) {
-		return <DateLoanFieldInput field={field} />;
+		return (
+			<DateLoanFieldInput
+				field={field}
+				value={value}
+				onChange={onChange}
+				onBlur={onBlur}
+			/>
+		);
 	}
 
 	return false;

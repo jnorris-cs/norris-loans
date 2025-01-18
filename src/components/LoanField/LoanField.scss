@@ -1,0 +1,31 @@
+.loan-field {
+	--invalid: #ff0000;
+
+	position: relative;
+
+	input {
+		width: 200px;
+	}
+
+	.loan-field-error-message{
+		position: absolute;
+		font-size: 11px;
+	}
+}
+
+.loan-field.loan-field__invalid {
+	input {
+		border-color: var(--invalid);
+	};
+	
+	.loan-field-error-message {
+		color: var(--invalid);
+	}
+}
+
+.loan-field.loan-field__focused {
+
+	.loan-field-error-message {
+		color: #777;
+	}
+}
