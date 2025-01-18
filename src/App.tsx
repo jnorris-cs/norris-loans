@@ -1,10 +1,12 @@
 import "./App.css";
+import "tachyons"
+import LoadingIndicator from "./components/LoadingIndicator/LoadingIndicator";
 
 const App = () => {
   return (
-    <div className="content">
-      <h1>Rsbuild with React</h1>
-      <p>Start building amazing things with Rsbuild.</p>
+    <div className="content pa3">
+      <h1 className="ma0">Norris Loans</h1>
+      <LoadingIndicator className="mt3" />
     </div>
   );
 };
