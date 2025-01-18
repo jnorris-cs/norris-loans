@@ -8,8 +8,12 @@ export type FieldMetadata = {
 	display: string;
 	field: string;
 	type: FieldType;
-	conditions?: MoneyConditions | StringConditions;
 };
+
+export type StringFieldMetadata = FieldMetadata & {
+	type: 'string';
+	conditions: { regex: string };
+}
 
 export type LoanEntityMetadata = {
 	name: EntityType;

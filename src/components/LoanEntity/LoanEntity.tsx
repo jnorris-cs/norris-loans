@@ -9,7 +9,7 @@ interface LoanEntityProps {
 	values?: Record<string, unknown>;
 }
 
-const LoanEntity = ({ entity, values }: LoanEntityProps) => {
+const LoanEntity = ({ entity }: LoanEntityProps) => {
 	const [showFields, setShowFields] = useState(true);
 
 	const toggleFieldVisibility = useCallback(() => {

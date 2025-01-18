@@ -1,16 +1,20 @@
+import LoanFieldInput from "./LoanFieldInput/LoanFieldInput";
 import type { FieldMetadata } from "../../types";
 
-interface LoanEntityProps {
+interface  LoanFieldProps {
 	field: FieldMetadata;
 	value?: unknown;
 }
 
-const LoanEntity = ({ field, value }: LoanEntityProps) => {
+const  LoanField = ({ field }:  LoanFieldProps) => {
+
+
 	return (
-		<div>
-			<label>{field.display}</label>
+		<div className="mb3">
+			<label className="db mb1" htmlFor={field.field}>{field.display}</label>
+      <LoanFieldInput field={field} />
 		</div>
 	);
 };
 
-export default LoanEntity;
+export default  LoanField;
