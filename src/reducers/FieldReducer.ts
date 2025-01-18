@@ -5,17 +5,17 @@ interface State {
 	hasError: boolean
 	errorMessage?: string
   initialValue?: InputValue
-	localValue?: InputValue
+	value?: InputValue
 	isSaving: boolean
   wasSaveSuccussful? : boolean
 };
 
 type FieldAction =
   | { type: "initialize", value: InputValue | undefined }
-  | { type: "focus"; }
+  | { type: "focus-change", value: boolean }
 	| { 
 		type: "change"; 
-		value: Pick<State, 'hasError' | 'errorMessage' | 'localValue'>
+		value: Pick<State, 'hasError' | 'errorMessage'> & { value: InputValue }
 	}
 	| {
 		type: 'blur'
@@ -40,14 +40,15 @@ type FieldAction =
         return {
           ...state,
           initialValue: action.value,
-          localValue: action.value
+          value: action.value
         };
-      case "focus":
-        return { ...state,  isFocused: false};
+      case "focus-change":
+        return { ...state,  isFocused: action.value};
       case "change":
-        return { ...state, ...action.value};
+        return { ...state, ...action.value,
+        };
       case "blur":
-        if (state.localValue === state.initialValue){
+        if (state.value === state.initialValue){
           return { ...state, isFocused: false};
         }
 
@@ -57,8 +58,7 @@ type FieldAction =
 
         return { 
           ...initialState,
-          localValue: state.localValue,
-          initialValue: state.localValue,
+          initialValue: state.value,
           wasSaveSuccussful: true
         };
       case "save-failure":

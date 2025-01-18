@@ -6,7 +6,7 @@ interface DateLoanFieldInputProps {
 }
 
 const DateLoanFieldInput = ({ field }: DateLoanFieldInputProps) => {
-	return <input type="date" name={field.field} className="field-input" />;
+	return <input type="date" name={field.field}  />;
 };
 
 export default DateLoanFieldInput;
