@@ -5,11 +5,9 @@ interface LoanStringFieldProps {
 	value?: string;
 }
 
-
 const LoanStringField = ({ field }: LoanStringFieldProps) => {
-
 	return (
-    <input type="text" name={field.field} pattern={field.conditions.regex} />
+		<input type="text" name={field.field} pattern={field.conditions.regex} />
 	);
 };
 

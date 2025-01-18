@@ -11,9 +11,9 @@ export type FieldMetadata = {
 };
 
 export type StringFieldMetadata = FieldMetadata & {
-	type: 'string';
+	type: "string";
 	conditions: { regex: string };
-}
+};
 
 export type LoanEntityMetadata = {
 	name: EntityType;

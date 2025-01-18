@@ -3,23 +3,21 @@ import type { FieldMetadata, StringFieldMetadata } from "../../../types";
 import LoanStringField from "../LoanStringField/LoanStringField";
 
 // TODO move to utils
-const isStringField = (field: FieldMetadata): field is StringFieldMetadata =>  {
-  return field.type === 'string'
-}
+const isStringField = (field: FieldMetadata): field is StringFieldMetadata => {
+	return field.type === "string";
+};
 
-interface  LoanFieldInputProps {
+interface LoanFieldInputProps {
 	field: FieldMetadata;
 	value?: unknown;
 }
 
-const LoanFieldInput = ({field}: LoanFieldInputProps) => {
+const LoanFieldInput = ({ field }: LoanFieldInputProps) => {
+	if (isStringField(field)) {
+		return <LoanStringField field={field} />;
+	}
 
-  if (isStringField(field)){
-    return <LoanStringField field={field} />
-  }
-
-  return false
+	return false;
 };
 
-
-export default LoanFieldInput
+export default LoanFieldInput;
