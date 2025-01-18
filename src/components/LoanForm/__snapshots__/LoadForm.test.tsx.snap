@@ -6,7 +6,95 @@ exports[`LoanForm renders the component correctly 1`] = `
     <div
       class="content pt3"
     >
-      2
+      <fieldset
+        class="bw0 pa0 mb4"
+      >
+        <legend
+          class="mb2"
+        >
+          <span
+            class="fw6 f3 mr2"
+          >
+            Loan
+          </span>
+          <button
+            class="pa0 bw0 bg-transparent"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-chevron-down "
+              data-icon="chevron-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </legend>
+        <div>
+          <label>
+            Loan Amount
+          </label>
+        </div>
+        <div>
+          <label>
+            Down Payment
+          </label>
+        </div>
+      </fieldset>
+      <fieldset
+        class="bw0 pa0 mb4"
+      >
+        <legend
+          class="mb2"
+        >
+          <span
+            class="fw6 f3 mr2"
+          >
+            Borrower
+          </span>
+          <button
+            class="pa0 bw0 bg-transparent"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-chevron-down "
+              data-icon="chevron-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </legend>
+        <div>
+          <label>
+            First Name
+          </label>
+        </div>
+        <div>
+          <label>
+            Last Name
+          </label>
+        </div>
+        <div>
+          <label>
+            Birth Date
+          </label>
+        </div>
+      </fieldset>
     </div>
   </div>
 </body>
