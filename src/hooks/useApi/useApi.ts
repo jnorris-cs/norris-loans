@@ -16,9 +16,10 @@ export default <T>(
 				}
 
 				const json = await response.json();
+				console.log(json);
 				setData(json);
 			} catch (error) {
-				console.error(error)
+				console.error(error);
 				setHasError(true);
 			} finally {
 				setIsLoading(false);

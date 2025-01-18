@@ -8,7 +8,7 @@ export default defineConfig({
 		favicon: "./src/assets/images/icon.png",
 		meta: {
 			description:
-				"an‌ ‌ application‌ ‌ that‌ ‌ dynamically‌ ‌ generates‌ ‌ form‌ ‌ inputs‌ ‌ from‌ ‌ a‌ ‌ provided‌ ‌ JSON‌ ‌ configuratio",
+				"an application that dynamically generates form inputs from a provided JSON configuratio",
 		},
 	},
 });

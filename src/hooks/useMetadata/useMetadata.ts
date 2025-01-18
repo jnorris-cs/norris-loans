@@ -8,8 +8,10 @@ interface UseMetdataReturn {
 
 export default (): UseMetdataReturn => {
 	const { isLoading, data } = useApi<FieldMetadata[]>(
-		"./src/assets/json/fieldsMetaData.json",
+		"/json/fieldsMetaData.json",
 	);
+
+	console.log(data);
 
 	return {
 		isLoadingMetadata: isLoading,
