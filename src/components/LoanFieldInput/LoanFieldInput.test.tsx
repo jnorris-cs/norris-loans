@@ -3,23 +3,23 @@ import LoanFieldInput from "./LoanFieldInput";
 import fields from "../../_fixtures/fields";
 import type { FieldMetadata } from "../../types";
 
-const dateField = fields.find(f => f.type === 'date')  as FieldMetadata
-const moneyField = fields.find(f => f.type === 'string')  as FieldMetadata
-const stringField = fields.find(f => f.type === 'money')  as FieldMetadata
+const dateField = fields.find((f) => f.type === "date") as FieldMetadata;
+const moneyField = fields.find((f) => f.type === "string") as FieldMetadata;
+const stringField = fields.find((f) => f.type === "money") as FieldMetadata;
 
 describe("LoanFieldInput", () => {
 	it("renders date field correct", () => {
 		const result = render(<LoanFieldInput field={dateField} />);
-    expect(result.baseElement.firstChild).toMatchSnapshot()
-  });
+		expect(result.baseElement.firstChild).toMatchSnapshot();
+	});
 
-  it("renders money field correct", () => {
+	it("renders money field correct", () => {
 		const result = render(<LoanFieldInput field={moneyField} />);
-    expect(result.baseElement.firstChild).toMatchSnapshot()
-  });
+		expect(result.baseElement.firstChild).toMatchSnapshot();
+	});
 
-  it("renders string field correct", () => {
+	it("renders string field correct", () => {
 		const result = render(<LoanFieldInput field={stringField} />);
-    expect(result.baseElement.firstChild).toMatchSnapshot()
-  });
+		expect(result.baseElement.firstChild).toMatchSnapshot();
+	});
 });

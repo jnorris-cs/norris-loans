@@ -4,3 +4,7 @@ body {
 	color: #333;
 	font-family: Inter, Helvetica, Arial, sans-serif;
 }
+
+.field-input {
+	width: 200px;
+}

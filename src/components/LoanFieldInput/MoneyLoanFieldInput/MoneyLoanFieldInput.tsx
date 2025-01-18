@@ -6,7 +6,7 @@ interface MoneyLoanFieldInputProps {
 }
 
 const MoneyLoanFieldInput = ({ field }: MoneyLoanFieldInputProps) => {
-	return <input type="number" name={field.field} />;
+	return <input type="number" name={field.field} className="field-input" />;
 };
 
 export default MoneyLoanFieldInput;

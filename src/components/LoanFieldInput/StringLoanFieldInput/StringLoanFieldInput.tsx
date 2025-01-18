@@ -7,7 +7,12 @@ interface StringLoanFieldInputProps {
 
 const StringLoanFieldInput = ({ field }: StringLoanFieldInputProps) => {
 	return (
-		<input type="text" name={field.field} pattern={field.conditions.regex} />
+		<input
+			type="text"
+			name={field.field}
+			pattern={field.conditions.regex}
+			className="field-input"
+		/>
 	);
 };
 
