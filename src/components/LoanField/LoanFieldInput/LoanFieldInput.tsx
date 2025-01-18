@@ -1,11 +1,6 @@
-import type { FieldMetadata, StringFieldMetadata } from "../../../types";
-
+import { isStringField } from "../../../utils/field-types";
 import LoanStringField from "../LoanStringField/LoanStringField";
-
-// TODO move to utils
-const isStringField = (field: FieldMetadata): field is StringFieldMetadata => {
-	return field.type === "string";
-};
+import type { FieldMetadata } from "../../../types";
 
 interface LoanFieldInputProps {
 	field: FieldMetadata;
