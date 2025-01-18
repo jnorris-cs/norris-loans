@@ -1,19 +1,16 @@
-import type {
-	FieldMetadata,
-} from "../../types";
+import type { FieldMetadata } from "../../types";
 
-
-interface  LoanEntityProps {
+interface LoanEntityProps {
 	field: FieldMetadata;
-  value?: unknown
+	value?: unknown;
 }
 
-const  LoanEntity = ({ field, value }:  LoanEntityProps) => {
-
-
-	return <div>
-    <label>{field.display}</label>  
-  </div>;
+const LoanEntity = ({ field, value }: LoanEntityProps) => {
+	return (
+		<div>
+			<label>{field.display}</label>
+		</div>
+	);
 };
 
-export default  LoanEntity;
+export default LoanEntity;

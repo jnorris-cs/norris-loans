@@ -37,7 +37,13 @@ const LoanForm = ({ fields }: LoanFormProps) => {
 	// convert fields into entity objects
 	const entities = useEntities(fields);
 
-	return <div className="content pt3">{entities.map(entity => (<LoanEntity entity={entity} key={entity.name}/>))}</div>;
+	return (
+		<div className="content pt3">
+			{entities.map((entity) => (
+				<LoanEntity entity={entity} key={entity.name} />
+			))}
+		</div>
+	);
 };
 
 export default LoanForm;
