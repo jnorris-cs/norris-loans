@@ -4,7 +4,7 @@ import {
 	initialState,
 	FieldChangeAction,
 } from "../../reducers/FieldReducer";
-import { useEffect, useMemo, useReducer } from "react";
+import { useMemo, useReducer } from "react";
 import type { FieldMetadata, InputValue } from "../../types";
 
 import "./LoanField.scss";
@@ -15,11 +15,11 @@ interface LoanFieldProps {
 }
 
 const LoanField = ({ field, value }: LoanFieldProps) => {
-	const [state, dispatch] = useReducer(fieldReducer, initialState);
-
-	useEffect(() => {
-		dispatch({ type: "initialize", value });
-	}, [value, dispatch]);
+	const [state, dispatch] = useReducer(fieldReducer, {
+		...initialState,
+		initialValue: value,
+		value: value,
+	});
 
 	const classNames = useMemo<string>(() => {
 		const classes = ["mb3", "loan-field"];
@@ -42,8 +42,6 @@ const LoanField = ({ field, value }: LoanFieldProps) => {
 		});
 	const onBlur = () => dispatch({ type: "blur" });
 
-	console.log("test 1", field.field);
-
 	return (
 		<div className={classNames}>
 			<label className="db mb1" htmlFor={field.field}>
@@ -51,6 +49,7 @@ const LoanField = ({ field, value }: LoanFieldProps) => {
 			</label>
 			<LoanFieldInput
 				field={field}
+				value={state.value}
 				onChange={onChange}
 				onBlur={onBlur}
 				onFocus={onFocus}

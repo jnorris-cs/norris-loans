@@ -17,10 +17,6 @@ export type FieldChangeAction = Pick<
 >;
 
 type FieldAction =
-	| {
-			type: "initialize";
-			value: InputValue | undefined;
-	  }
 	| { type: "focus" }
 	| {
 			type: "change";
@@ -42,12 +38,6 @@ export const initialState: State = {
 
 export const fieldReducer = (state: State, action: FieldAction): State => {
 	switch (action.type) {
-		case "initialize":
-			return {
-				...state,
-				initialValue: action.value,
-				value: action.value,
-			};
 		case "focus":
 			return { ...state, isFocused: true };
 		case "change":
