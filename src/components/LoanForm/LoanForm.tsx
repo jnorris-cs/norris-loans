@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import LoanEntity from "../LoanEntity/LoanEntity";
 import type {
 	EntityType,
 	FieldMetadata,
@@ -36,7 +37,7 @@ const LoanForm = ({ fields }: LoanFormProps) => {
 	// convert fields into entity objects
 	const entities = useEntities(fields);
 
-	return <div className="content pt3">{entities.length}</div>;
+	return <div className="content pt3">{entities.map(entity => (<LoanEntity entity={entity} key={entity.name}/>))}</div>;
 };
 
 export default LoanForm;
