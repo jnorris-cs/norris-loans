@@ -1,0 +1,10 @@
+# Dependency directory
+# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+node_modules
+
+# Visual Studio Code - https://code.visualstudio.com/
+.settings/
+.vscode/
+
+# Mac
+.DS_Store
