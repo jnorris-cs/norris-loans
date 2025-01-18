@@ -33,31 +33,15 @@ type LoanFieldInputProps = {
 	value?: InputValue;
 } & StandardInputProps;
 
-const LoanFieldInput = ({
-	field,
-	value,
-	onChange,
-	onBlur,
-	onFocus,
-}: LoanFieldInputProps) => {
-	const inputProps = {
-		name: field.field,
-		id: field.field,
-		onBlur: onBlur,
-		onFocus: onFocus,
-		onChange: onChange,
-		field: field,
-		value: value ?? "",
-	};
-
-	if (isStringField(inputProps)) {
-		return <StringLoanFieldInput {...inputProps} />;
+const LoanFieldInput = (props: LoanFieldInputProps) => {
+	if (isStringField(props)) {
+		return <StringLoanFieldInput {...props} />;
 	}
-	if (isMoneyField(inputProps)) {
-		return <MoneyLoanFieldInput {...inputProps} />;
+	if (isMoneyField(props)) {
+		return <MoneyLoanFieldInput {...props} />;
 	}
-	if (isDateField(inputProps)) {
-		return <DateLoanFieldInput {...inputProps} />;
+	if (isDateField(props)) {
+		return <DateLoanFieldInput {...props} />;
 	}
 
 	return false;

@@ -31,7 +31,6 @@ const StringLoanFieldInput = ({
 		[onChange, regex],
 	);
 
-
 	return <input type="text" onChange={onComponentChange} {...restProps} />;
 };
 

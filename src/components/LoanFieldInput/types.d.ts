@@ -5,6 +5,7 @@ export type FieldChangeAction = Pick<State, "hasError" | "errorMessage"> & {
 };
 
 export type StandardInputProps = {
+	field: FieldMetadata;
 	onChange: (payload: FieldChangeAction) => void;
 	onBlur: () => void;
 	onFocus: () => void;

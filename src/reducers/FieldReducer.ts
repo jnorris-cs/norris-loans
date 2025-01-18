@@ -1,6 +1,6 @@
 import type { InputValue } from "../types";
 
-interface State {
+export interface State {
 	isDirty: boolean; // has user blurred once?
 	isFocused: boolean;
 	hasError: boolean;
@@ -8,7 +8,7 @@ interface State {
 	initialValue?: InputValue;
 	value?: InputValue;
 	isSaving: boolean;
-	wasSaveSuccussful?: boolean;
+	hasSaved?: boolean;
 }
 
 export type FieldChangeAction = Pick<
@@ -22,8 +22,9 @@ type FieldAction =
 			type: "change";
 			value: FieldChangeAction;
 	  }
-	| { type: "blur" }
+	| { type: "blur"; value: boolean }
 	| { type: "save-success" }
+	| { type: "clear-save-success" }
 	| {
 			type: "save-failure";
 			value: State["errorMessage"];
@@ -41,27 +42,25 @@ export const fieldReducer = (state: State, action: FieldAction): State => {
 		case "focus":
 			return { ...state, isFocused: true };
 		case "change":
-			return { ...state, ...action.value };
+			return { ...state, hasSaved: false, ...action.value };
 		case "blur":
-			// eslint-disable-next-line no-case-declarations
-			const newState = { ...state, isDirty: true, isFocused: false };
-
-			// if value hasnt changed, go back to initial values
-			if (state.value === state.initialValue) {
-				return { ...newState, isDirty: false };
-			}
-			// if value is invalid, dont save it
-			if (state.hasError) {
-				return newState;
-			}
-
-			// TODO add saving here
-			return { ...newState, isSaving: true };
+			return {
+				...state,
+				// if value hasnt changed, go back to initial values
+				isDirty: state.value !== state.initialValue,
+				isFocused: false,
+				isSaving: action.value,
+			};
 		case "save-success":
 			return {
 				...initialState,
 				initialValue: state.value,
-				wasSaveSuccussful: true,
+				hasSaved: true,
+			};
+		case "clear-save-success":
+			return {
+				...state,
+				hasSaved: false,
 			};
 		case "save-failure":
 			return {

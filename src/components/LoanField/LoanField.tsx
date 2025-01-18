@@ -1,10 +1,11 @@
 import LoanFieldInput from "../LoanFieldInput/LoanFieldInput";
+import LoanFieldIcon from "./LoadFieldIcon/LoadFieldIcon";
 import {
 	fieldReducer,
 	initialState,
 	FieldChangeAction,
 } from "../../reducers/FieldReducer";
-import { useMemo, useReducer } from "react";
+import { useCallback, useMemo, useReducer } from "react";
 import type { FieldMetadata, InputValue } from "../../types";
 
 import "./LoanField.scss";
@@ -14,13 +15,17 @@ interface LoanFieldProps {
 	value?: InputValue;
 }
 
-const LoanField = ({ field, value }: LoanFieldProps) => {
+const LoanField = ({ field, value = "" }: LoanFieldProps) => {
 	const [state, dispatch] = useReducer(fieldReducer, {
 		...initialState,
 		initialValue: value,
 		value: value,
 	});
 
+	const id = useMemo(
+		() => `${field.entity}.${field.field}`,
+		[field.entity, field.field],
+	);
 	const classNames = useMemo<string>(() => {
 		const classes = ["mb3", "loan-field"];
 
@@ -40,20 +45,39 @@ const LoanField = ({ field, value }: LoanFieldProps) => {
 			type: "change",
 			value: payload,
 		});
-	const onBlur = () => dispatch({ type: "blur" });
+	const onBlur = useCallback(() => {
+		const canSave = !state.hasError && state.value !== state.initialValue;
+		console.log(state.value, state.initialValue);
+
+		dispatch({ type: "blur", value: canSave });
+
+		if (!canSave) {
+			return;
+		}
+
+		setTimeout(() => {
+			dispatch({ type: "save-success" });
+			setTimeout(() => {
+				dispatch({ type: "clear-save-success" });
+			}, 3000);
+		}, 3000);
+	}, [dispatch, state.hasError, state.value, state.initialValue]);
 
 	return (
 		<div className={classNames}>
-			<label className="db mb1" htmlFor={field.field}>
+			<label className="db mb1" htmlFor={id}>
 				{field.display}
 			</label>
 			<LoanFieldInput
 				field={field}
+				id={id}
+				name={id}
 				value={state.value}
 				onChange={onChange}
 				onBlur={onBlur}
 				onFocus={onFocus}
 			/>
+			<LoanFieldIcon {...state} />
 			{state.errorMessage && (
 				<div className="loan-field-error-message">{state.errorMessage}</div>
 			)}
