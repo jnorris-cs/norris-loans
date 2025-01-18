@@ -11,8 +11,6 @@ export default (): UseMetdataReturn => {
 		"/json/fieldsMetaData.json",
 	);
 
-	console.log(data);
-
 	return {
 		isLoadingMetadata: isLoading,
 		fieldsMetadata: data ?? [],
