@@ -28,19 +28,11 @@ const StringLoanFieldInput = ({
 				errorMessage: !isValid ? "Must not use invalid charactors" : undefined,
 			});
 		},
-		[onChange],
+		[onChange, regex],
 	);
 
-	console.log(field.field, 'update')
 
-	return (
-		<input
-			type="text"
-			name={field.field}
-			onChange={onComponentChange}
-			{...restProps}
-		/>
-	);
+	return <input type="text" onChange={onComponentChange} {...restProps} />;
 };
 
 export default StringLoanFieldInput;

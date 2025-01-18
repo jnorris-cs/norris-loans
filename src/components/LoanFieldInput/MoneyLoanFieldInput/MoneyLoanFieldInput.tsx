@@ -43,13 +43,12 @@ const MoneyLoanFieldInput = ({
 				value: numericValue,
 			});
 		},
-		[onChange],
+		[onChange, field.conditions],
 	);
 
 	return (
 		<CurrencyInput
 			prefix="$"
-			name={field.field}
 			decimalsLimit={2}
 			onValueChange={onComponentChange}
 			{...restProps}

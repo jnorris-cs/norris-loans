@@ -1,14 +1,32 @@
-import {
-	isStringField,
-	isDateField,
-	isMoneyField,
-} from "../../utils/field-types";
 import StringLoanFieldInput from "./StringLoanFieldInput/StringLoanFieldInput";
 import MoneyLoanFieldInput from "./MoneyLoanFieldInput/MoneyLoanFieldInput";
 import DateLoanFieldInput from "./DateLoanFieldInput/DateLoanFieldInput";
-import type { StandardInputProps } from "./types";
 
+import type {
+	StandardInputProps,
+	DateLoanFieldInputProps,
+	MoneyLoanFieldInputProps,
+	StringLoanFieldInputProps,
+} from "./types";
 import type { FieldMetadata, InputValue } from "../../types";
+
+const isStringField = (
+	props: StandardInputProps,
+): props is StringLoanFieldInputProps => {
+	return props.field.type === "string";
+};
+
+const isDateField = (
+	props: StandardInputProps,
+): props is DateLoanFieldInputProps => {
+	return props.field.type === "date";
+};
+
+const isMoneyField = (
+	props: StandardInputProps,
+): props is MoneyLoanFieldInputProps => {
+	return props.field.type === "money";
+};
 
 type LoanFieldInputProps = {
 	field: FieldMetadata;
@@ -22,40 +40,24 @@ const LoanFieldInput = ({
 	onBlur,
 	onFocus,
 }: LoanFieldInputProps) => {
-	const standardProps = {
+	const inputProps = {
 		name: field.field,
 		id: field.field,
-		onBlur:onBlur,
-		onFocus:onFocus,
-		onChange: onChange
-	}
+		onBlur: onBlur,
+		onFocus: onFocus,
+		onChange: onChange,
+		field: field,
+		value: value ?? "",
+	};
 
-	if (isStringField(field)) {
-		return (
-			<StringLoanFieldInput
-				{...standardProps}
-				field={field}
-				value={value}
-			/>
-		);
+	if (isStringField(inputProps)) {
+		return <StringLoanFieldInput {...inputProps} />;
 	}
-	if (isMoneyField(field)) {
-		return (
-			<MoneyLoanFieldInput
-			{...standardProps}
-			field={field}
-			value={value}
-			/>
-		);
+	if (isMoneyField(inputProps)) {
+		return <MoneyLoanFieldInput {...inputProps} />;
 	}
-	if (isDateField(field)) {
-		return (
-			<DateLoanFieldInput
-				{...standardProps}
-				field={field}
-				value={value}
-			/>
-		);
+	if (isDateField(inputProps)) {
+		return <DateLoanFieldInput {...inputProps} />;
 	}
 
 	return false;

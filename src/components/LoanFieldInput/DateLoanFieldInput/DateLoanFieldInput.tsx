@@ -9,7 +9,6 @@ type DateLoanFieldInputProps = {
 } & StandardInputProps;
 
 const DateLoanFieldInput = ({
-	field,
 	onChange,
 	...restProps
 }: DateLoanFieldInputProps) => {
@@ -24,14 +23,7 @@ const DateLoanFieldInput = ({
 		[onChange],
 	);
 
-	return (
-		<input
-			type="date"
-			name={field.field}
-			onChange={onComponentChange}
-			{...restProps}
-		/>
-	);
+	return <input type="date" onChange={onComponentChange} {...restProps} />;
 };
 
 export default DateLoanFieldInput;
