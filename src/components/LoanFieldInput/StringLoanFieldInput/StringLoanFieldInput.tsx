@@ -11,7 +11,6 @@ const StringLoanFieldInput = ({ field }: StringLoanFieldInputProps) => {
 			type="text"
 			name={field.field}
 			pattern={field.conditions.regex}
-			className="field-input"
 		/>
 	);
 };
