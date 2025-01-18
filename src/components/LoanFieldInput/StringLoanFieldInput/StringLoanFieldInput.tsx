@@ -31,6 +31,8 @@ const StringLoanFieldInput = ({
 		[onChange],
 	);
 
+	console.log(field.field, 'update')
+
 	return (
 		<input
 			type="text"

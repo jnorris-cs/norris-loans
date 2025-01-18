@@ -22,36 +22,38 @@ const LoanFieldInput = ({
 	onBlur,
 	onFocus,
 }: LoanFieldInputProps) => {
+	const standardProps = {
+		name: field.field,
+		id: field.field,
+		onBlur:onBlur,
+		onFocus:onFocus,
+		onChange: onChange
+	}
+
 	if (isStringField(field)) {
 		return (
 			<StringLoanFieldInput
+				{...standardProps}
 				field={field}
 				value={value}
-				onChange={onChange}
-				onBlur={onBlur}
-				onFocus={onFocus}
 			/>
 		);
 	}
 	if (isMoneyField(field)) {
 		return (
 			<MoneyLoanFieldInput
-				field={field}
-				value={value}
-				onChange={onChange}
-				onBlur={onBlur}
-				onFocus={onFocus}
+			{...standardProps}
+			field={field}
+			value={value}
 			/>
 		);
 	}
 	if (isDateField(field)) {
 		return (
 			<DateLoanFieldInput
+				{...standardProps}
 				field={field}
 				value={value}
-				onChange={onChange}
-				onBlur={onBlur}
-				onFocus={onFocus}
 			/>
 		);
 	}
