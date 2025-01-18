@@ -10,7 +10,11 @@ const App = () => {
 	return (
 		<div className="content pa3">
 			<h1 className="ma0">Norris Loans</h1>
-			{isLoadingMetadata ? <LoadingIndicator className="mt3" /> : <LoanForm fields={fieldsMetadata} />}
+			{isLoadingMetadata ? (
+				<LoadingIndicator className="mt3" />
+			) : (
+				<LoanForm fields={fieldsMetadata} />
+			)}
 		</div>
 	);
 };
