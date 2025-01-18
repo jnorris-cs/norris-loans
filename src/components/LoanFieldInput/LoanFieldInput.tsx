@@ -2,12 +2,12 @@ import {
 	isStringField,
 	isDateField,
 	isMoneyField,
-} from "../../../utils/field-types";
-import StringLoanFieldInput from "../StringLoanFieldInput/StringLoanFieldInput";
-import MoneyLoanFieldInput from "../MoneyLoanFieldInput/MoneyLoanFieldInput";
-import DateLoanFieldInput from "../DateLoanFieldInput/DateLoanFieldInput";
+} from "../../utils/field-types";
+import StringLoanFieldInput from "./StringLoanFieldInput/StringLoanFieldInput";
+import MoneyLoanFieldInput from "./MoneyLoanFieldInput/MoneyLoanFieldInput";
+import DateLoanFieldInput from "./DateLoanFieldInput/DateLoanFieldInput";
 
-import type { FieldMetadata } from "../../../types";
+import type { FieldMetadata } from "../../types";
 
 interface LoanFieldInputProps {
 	field: FieldMetadata;

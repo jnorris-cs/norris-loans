@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoanFieldInput renders date field correct 1`] = `
+<div>
+  <input
+    name="birthDate"
+    type="date"
+  />
+</div>
+`;
+
+exports[`LoanFieldInput renders money field correct 1`] = `
+<div>
+  <input
+    name="firstName"
+    pattern="^[a-zA-Z]+$"
+    type="text"
+  />
+</div>
+`;
+
+exports[`LoanFieldInput renders string field correct 1`] = `
+<div>
+  <input
+    name="loanAmount"
+    type="number"
+  />
+</div>
+`;

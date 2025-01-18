@@ -1,4 +1,4 @@
-import LoanFieldInput from "./LoanFieldInput/LoanFieldInput";
+import LoanFieldInput from "../LoanFieldInput/LoanFieldInput";
 import type { FieldMetadata } from "../../types";
 
 interface LoanFieldProps {
