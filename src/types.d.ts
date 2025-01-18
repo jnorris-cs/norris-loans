@@ -1,6 +1,6 @@
 export type EntityType = "Loan" | "Borrower";
 export type FieldType = "string" | "money" | "date";
-export type InputValue = string | number | Date;
+export type InputValue = string | number;
 
 export type Loan = Record<EntityType, Record<string, InputValue>>;
 

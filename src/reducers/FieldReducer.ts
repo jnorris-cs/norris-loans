@@ -46,7 +46,7 @@ export const fieldReducer = (state: State, action: FieldAction): State => {
 			// eslint-disable-next-line no-case-declarations
 			const newState = { ...state, isDirty: true, isFocused: false };
 
-			// if value hasnt change, go back to initial values
+			// if value hasnt changed, go back to initial values
 			if (state.value === state.initialValue) {
 				return { ...newState, isDirty: false };
 			}
