@@ -10,15 +10,11 @@ type DateLoanFieldInputProps = {
 
 const DateLoanFieldInput = ({
 	field,
-	value,
-	onBlur,
 	onChange,
-	onFocus,
+	...restProps
 }: DateLoanFieldInputProps) => {
 	const onComponentChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>): void => {
-			console.log(event.target.value);
-
 			onChange({
 				hasError: false,
 				value: event.target.value,
@@ -32,10 +28,8 @@ const DateLoanFieldInput = ({
 		<input
 			type="date"
 			name={field.field}
-			value={value}
-			onBlur={onBlur}
 			onChange={onComponentChange}
-			onFocus={onFocus}
+			{...restProps}
 		/>
 	);
 };

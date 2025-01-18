@@ -15,10 +15,8 @@ type MoneyLoanFieldInputProps = {
 
 const MoneyLoanFieldInput = ({
 	field,
-	value,
-	onBlur,
 	onChange,
-	onFocus,
+	...restProps
 }: MoneyLoanFieldInputProps) => {
 	const onComponentChange = useCallback(
 		(stringValue: string | undefined): void => {
@@ -51,12 +49,10 @@ const MoneyLoanFieldInput = ({
 	return (
 		<CurrencyInput
 			prefix="$"
-			value={value}
 			name={field.field}
 			decimalsLimit={2}
 			onValueChange={onComponentChange}
-			onBlur={onBlur}
-			onFocus={onFocus}
+			{...restProps}
 		/>
 	);
 };

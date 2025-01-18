@@ -1,13 +1,43 @@
+import type { StandardInputProps } from "../types";
 import type { StringFieldMetadata } from "../../../types";
+import { useCallback, useMemo } from "react";
 
-interface StringLoanFieldInputProps {
+type StringLoanFieldInputProps = {
 	field: StringFieldMetadata;
 	value?: string;
-}
+} & StandardInputProps;
 
-const StringLoanFieldInput = ({ field }: StringLoanFieldInputProps) => {
+const StringLoanFieldInput = ({
+	field,
+	onChange,
+	...restProps
+}: StringLoanFieldInputProps) => {
+	const regex = useMemo(
+		() => new RegExp(field.conditions.regex),
+		[field.conditions.regex],
+	);
+
+	const onComponentChange = useCallback(
+		(event: React.ChangeEvent<HTMLInputElement>): void => {
+			const value = event.target.value;
+			const isValid = regex.test(value);
+
+			onChange({
+				hasError: !isValid,
+				value: value,
+				errorMessage: !isValid ? "Must not use invalid charactors" : undefined,
+			});
+		},
+		[onChange],
+	);
+
 	return (
-		<input type="text" name={field.field} pattern={field.conditions.regex} />
+		<input
+			type="text"
+			name={field.field}
+			onChange={onComponentChange}
+			{...restProps}
+		/>
 	);
 };
 
