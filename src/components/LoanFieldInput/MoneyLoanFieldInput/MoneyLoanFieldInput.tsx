@@ -1,3 +1,4 @@
+import CurrencyInput from 'react-currency-input-field';
 import type { FieldMetadata } from "../../../types";
 
 interface MoneyLoanFieldInputProps {
@@ -6,7 +7,13 @@ interface MoneyLoanFieldInputProps {
 }
 
 const MoneyLoanFieldInput = ({ field }: MoneyLoanFieldInputProps) => {
-	return <input type="number" name={field.field} className="field-input" />;
+	return (
+		<CurrencyInput
+			prefix="$"
+			name={field.field}
+			decimalsLimit={2}
+		/>
+	)
 };
 
 export default MoneyLoanFieldInput;

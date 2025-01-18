@@ -1,7 +1,8 @@
 export type EntityType = "Loan" | "Borrower";
 export type FieldType = "string" | "money" | "date";
-export type MoneyConditions = { maxValue: number; minValue: number };
-export type StringConditions = { regex‌: string };
+export type InputValue = string | number | Date;
+
+export type Loan = Record<EntityType, Record<string, InputValue>>;
 
 export type FieldMetadata = {
 	entity: EntityType;

@@ -17,6 +17,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.7.2",
 		"@fortawesome/react-fontawesome": "^0.2.2",
 		"react": "19.0.0",
+		"react-currency-input-field": "^3.9.0",
 		"react-dom": "19.0.0",
 		"tachyons": "4.12.0"
 	},
