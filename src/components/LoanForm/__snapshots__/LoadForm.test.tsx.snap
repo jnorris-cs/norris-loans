@@ -37,31 +37,37 @@ exports[`LoanForm renders the component correctly 1`] = `
         </button>
       </legend>
       <div
-        class="mb3"
+        class="mb3 loan-field loan-field__valid"
       >
         <label
           class="db mb1"
-          for="loanAmount"
+          for="Loan.loanAmount"
         >
           Loan Amount
         </label>
         <input
-          name="loanAmount"
-          type="number"
+          id="Loan.loanAmount"
+          inputmode="decimal"
+          name="Loan.loanAmount"
+          type="text"
+          value=""
         />
       </div>
       <div
-        class="mb3"
+        class="mb3 loan-field loan-field__valid"
       >
         <label
           class="db mb1"
-          for="downPaymentAmount"
+          for="Loan.downPaymentAmount"
         >
           Down Payment
         </label>
         <input
-          name="downPaymentAmount"
-          type="number"
+          id="Loan.downPaymentAmount"
+          inputmode="decimal"
+          name="Loan.downPaymentAmount"
+          type="text"
+          value=""
         />
       </div>
     </fieldset>
@@ -97,47 +103,52 @@ exports[`LoanForm renders the component correctly 1`] = `
         </button>
       </legend>
       <div
-        class="mb3"
+        class="mb3 loan-field loan-field__valid"
       >
         <label
           class="db mb1"
-          for="firstName"
+          for="Borrower.firstName"
         >
           First Name
         </label>
         <input
-          name="firstName"
-          pattern="^[a-zA-Z]+$"
+          id="Borrower.firstName"
+          name="Borrower.firstName"
           type="text"
+          value=""
         />
       </div>
       <div
-        class="mb3"
+        class="mb3 loan-field loan-field__valid"
       >
         <label
           class="db mb1"
-          for="lastName"
+          for="Borrower.lastName"
         >
           Last Name
         </label>
         <input
-          name="lastName"
-          pattern="^[a-zA-Z]+$"
+          id="Borrower.lastName"
+          name="Borrower.lastName"
           type="text"
+          value=""
         />
       </div>
       <div
-        class="mb3"
+        class="mb3 loan-field loan-field__valid"
       >
         <label
           class="db mb1"
-          for="birthDate"
+          for="Borrower.birthDate"
         >
           Birth Date
         </label>
         <input
-          name="birthDate"
+          field="[object Object]"
+          id="Borrower.birthDate"
+          name="Borrower.birthDate"
           type="date"
+          value=""
         />
       </div>
     </fieldset>

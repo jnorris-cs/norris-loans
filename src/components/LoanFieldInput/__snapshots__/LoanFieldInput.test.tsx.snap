@@ -3,8 +3,11 @@
 exports[`LoanFieldInput renders date field correct 1`] = `
 <div>
   <input
-    name="birthDate"
+    field="[object Object]"
+    id="test"
+    name="test"
     type="date"
+    value="value"
   />
 </div>
 `;
@@ -12,9 +15,10 @@ exports[`LoanFieldInput renders date field correct 1`] = `
 exports[`LoanFieldInput renders money field correct 1`] = `
 <div>
   <input
-    name="firstName"
-    pattern="^[a-zA-Z]+$"
+    id="test"
+    name="test"
     type="text"
+    value="value"
   />
 </div>
 `;
@@ -22,8 +26,11 @@ exports[`LoanFieldInput renders money field correct 1`] = `
 exports[`LoanFieldInput renders string field correct 1`] = `
 <div>
   <input
-    name="loanAmount"
-    type="number"
+    id="test"
+    inputmode="decimal"
+    name="test"
+    type="text"
+    value="$NaN"
   />
 </div>
 `;
