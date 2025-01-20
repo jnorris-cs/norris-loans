@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { FieldAction } from "../FieldReducer/FieldReducer";
+import { extractErrorMessage } from "../../../utils/api";
 
 import type { UpdateLoanContextType } from "../../../contexts/UpdateLoanContext";
 import type { Dispatch } from "react";
@@ -10,7 +11,7 @@ interface SaveFieldProps {
 	isSaving: boolean;
 	field: FieldMetadata;
 	value: InputValue;
-	updateLoan: UpdateLoanContextType;
+	updateLoan: UpdateLoanContextType["updateLoan"];
 }
 
 // this part is obvious not production code :grimmacing:
@@ -49,15 +50,7 @@ const updateRecord = async ({
 			dispatch({ type: "clear-save-success" });
 		}, 3000);
 	} catch (error: unknown) {
-		const errorMessage: string =
-			typeof error === "object" &&
-			error &&
-			"message" in error &&
-			typeof error.message === "string"
-				? error.message
-				: typeof error === "string" && error
-					? error
-					: "Save Failed";
+		const errorMessage: string = extractErrorMessage(error);
 		dispatch({ type: "save-failure", value: errorMessage });
 	}
 };
