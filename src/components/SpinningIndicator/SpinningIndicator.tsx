@@ -1,18 +1,18 @@
-interface LoadingIndicatorProps {
+interface SpinningIndicatorProps {
 	text?: string;
 	className?: string;
 }
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-const LoadingIndicator = ({
+const SpinningIndicator = ({
 	text = "Loading...",
 	className,
-}: LoadingIndicatorProps) => (
+}: SpinningIndicatorProps) => (
 	<div className={className}>
 		<FontAwesomeIcon icon={faSpinner} className="mr2 fa-spin" />
 		{text}
 	</div>
 );
 
-export default LoadingIndicator;
+export default SpinningIndicator;

@@ -2,7 +2,7 @@ export type EntityType = "Loan" | "Borrower";
 export type FieldType = "string" | "money" | "date";
 export type InputValue = string | number;
 
-export type Loan = Record<EntityType, Record<string, InputValue>>;
+export type Loan = Record<string, Record<string, InputValue | undefined>>;
 
 export type FieldMetadata = {
 	entity: EntityType;

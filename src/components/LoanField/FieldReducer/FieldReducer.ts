@@ -35,7 +35,7 @@ export const initialState: State = {
 	isDirty: false,
 	hasError: false,
 	isSaving: false,
-	value: '',
+	value: "",
 };
 
 export const fieldReducer = (state: State, action: FieldAction): State => {
@@ -56,6 +56,7 @@ export const fieldReducer = (state: State, action: FieldAction): State => {
 			return {
 				...initialState,
 				initialValue: state.value,
+				value: state.value,
 				hasSaved: true,
 			};
 		case "clear-save-success":

@@ -1,4 +1,7 @@
-export const get = <T>(key: string, defaultValue?: T): T | undefined => {
+export const getFromStorage = <T>(
+	key: string,
+	defaultValue?: T,
+): T | undefined => {
 	const value = localStorage[key];
 
 	if (value) {
@@ -13,7 +16,7 @@ export const get = <T>(key: string, defaultValue?: T): T | undefined => {
 	return defaultValue;
 };
 
-export const set = (key: string, value: unknown): void => {
+export const setInStorage = (key: string, value: unknown): void => {
 	if (!value && localStorage[key]) {
 		localStorage.removeItem(key);
 		return;

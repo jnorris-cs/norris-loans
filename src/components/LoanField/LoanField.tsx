@@ -5,9 +5,10 @@ import {
 	initialState,
 	FieldChangeAction,
 } from "./FieldReducer/FieldReducer";
-import { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useMemo, useReducer, useContext } from "react";
 import type { FieldMetadata, InputValue } from "../../types";
 import { useSaveField } from "./useSaveField/useSaveField";
+import { UpdateLoanContext } from "../../contexts/UpdateLoanContext";
 
 import "./LoanField.scss";
 
@@ -16,13 +17,25 @@ interface LoanFieldProps {
 	value?: InputValue;
 }
 
-const LoanField = ({ field, value = "" }: LoanFieldProps) => {
+const LoanField = ({ field }: LoanFieldProps) => {
+	// field state
+	const { updateLoan, getFieldValue } = useContext(UpdateLoanContext);
+	const value = getFieldValue(field);
 	const [state, dispatch] = useReducer(fieldReducer, {
 		...initialState,
 		initialValue: value,
 		value: value,
 	});
 
+	useSaveField({
+		isSaving: state.isSaving,
+		field,
+		value: state.value,
+		dispatch,
+		updateLoan,
+	});
+
+	// html values
 	const id = useMemo(
 		() => `${field.entity}.${field.field}`,
 		[field.entity, field.field],
@@ -39,7 +52,7 @@ const LoanField = ({ field, value = "" }: LoanFieldProps) => {
 		return classes.join(" ");
 	}, [state.isDirty, state.hasError]);
 
-	// handle input events
+	// input events handlers
 	const onFocus = () => dispatch({ type: "focus" });
 	const onChange = (payload: FieldChangeAction) =>
 		dispatch({
@@ -50,13 +63,6 @@ const LoanField = ({ field, value = "" }: LoanFieldProps) => {
 		const canSave = !state.hasError && state.value !== state.initialValue;
 		dispatch({ type: "blur", value: canSave });
 	}, [dispatch, state.hasError, state.value, state.initialValue]);
-
-	useSaveField({
-		isSaving: state.isSaving,
-		field,
-		value: state.value,
-		dispatch,
-	});
 
 	return (
 		<div className={classNames}>
