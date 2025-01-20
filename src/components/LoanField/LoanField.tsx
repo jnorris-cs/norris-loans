@@ -19,7 +19,7 @@ interface LoanFieldProps {
 }
 
 const LoanField = ({ field }: LoanFieldProps) => {
-	// field state
+	// field state and logic
 	const { getFieldValue, updateLoan } = useContext(UpdateLoanContext);
 	const value = getFieldValue(field);
 	const [state, dispatch] = useReducer(fieldReducer, {

@@ -2,7 +2,9 @@ import type { FieldMetadata, InputValue, Loan } from 'types';
 
 import { useCallback, useState } from 'react';
 import { deepMerge } from 'utils/deepMerge';
-import { getFromStorage } from 'utils/localStorage';
+import { getFromStorage , setInStorage} from 'utils/localStorage';
+
+const LOAN_STORAGE_KEY = 'loan';
 
 export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
 	const loan: Loan = {};
@@ -19,16 +21,16 @@ export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
 
 export const useLoan = (fields: FieldMetadata[]) => {
 	const emptyValue = convertFieldsToEmptyLoan(fields);
-	const savedValue = getFromStorage<Loan>('loan') ?? {};
+	const savedValue = getFromStorage<Loan>(LOAN_STORAGE_KEY) ?? {};
 	// we want to merge in case any new fields have been added since the last time the user saved
-	const initialLoan = deepMerge<Loan>(savedValue, emptyValue);
+	const initialLoan = deepMerge<Loan>({}, emptyValue, savedValue);
 	const [loan, setLoan] = useState<Loan>(initialLoan);
 
 	const updateLoan = (patchRecord: Partial<Loan>): void => {
-		const newLoan = deepMerge<Loan>(patchRecord, loan);
-		// todo make prettier
+		const newLoan = deepMerge<Loan>({}, loan, patchRecord);
 		console.log('updated in hoisted state', newLoan);
 		setLoan(newLoan);
+		setInStorage(LOAN_STORAGE_KEY, newLoan);
 	};
 
 	const getFieldValue = useCallback(

@@ -22,5 +22,9 @@ export const setInStorage = (key: string, value: unknown): void => {
 		return;
 	}
 
+	if (value && typeof value === 'object') {	
+		value = JSON.stringify(value);
+	}
+
 	localStorage[key] = value;
 };
