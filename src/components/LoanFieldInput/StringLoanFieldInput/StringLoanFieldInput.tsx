@@ -25,7 +25,9 @@ const StringLoanFieldInput = ({
 			const isValid = regex.test(value);
 
 			onChange({
-				errorMessage: !isValid ? 'Can only use alphabetical characters' : undefined,
+				errorMessage: !isValid
+					? 'Can only use alphabetical characters'
+					: undefined,
 				hasError: !isValid,
 				value: value,
 			});

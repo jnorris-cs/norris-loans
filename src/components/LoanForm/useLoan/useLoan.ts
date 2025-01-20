@@ -6,25 +6,10 @@ import { getFromStorage, setInStorage } from 'utils/localStorage';
 
 const LOAN_STORAGE_KEY = 'loan';
 
-// build an empty loan object with all fields set to undefined
-export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
-	const loan: Loan = {};
-
-	fields.forEach((field) => {
-		if (!loan[field.entity]) {
-			loan[field.entity] = {};
-		}
-		loan[field.entity][field.field] = undefined;
-	});
-
-	return loan;
-};
-
-export const useLoan = (fields: FieldMetadata[]) => {
-	const emptyValue = convertFieldsToEmptyLoan(fields);
+export const useLoan = () => {
 	const savedValue = getFromStorage<Loan>(LOAN_STORAGE_KEY) ?? {};
 	// we want to merge in case any new fields have been added since the last time the user saved
-	const initialLoan = deepMerge<Loan>({}, emptyValue, savedValue);
+	const initialLoan = deepMerge<Loan>({}, savedValue);
 	const [loan, setLoan] = useState<Loan>(initialLoan);
 
 	const updateLoan = (patchRecord: Partial<Loan>): void => {
@@ -36,6 +21,10 @@ export const useLoan = (fields: FieldMetadata[]) => {
 
 	const getFieldValue = useCallback(
 		(field: FieldMetadata): InputValue => {
+			if (!loan[field.entity]) {
+				loan[field.entity] = {};
+			}
+
 			return loan[field.entity][field.field] ?? '';
 		},
 		[loan]

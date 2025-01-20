@@ -83,7 +83,7 @@ const LoanField = ({ field }: LoanFieldProps) => {
 				value={state.value}
 			/>
 			<LoanFieldIcon {...state} />
-			{state.errorMessage && (
+			{state.errorMessage && state.isDirty && (
 				<div className="loan-field-error-message">{state.errorMessage}</div>
 			)}
 		</div>

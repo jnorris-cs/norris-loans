@@ -10,7 +10,7 @@ jest.useFakeTimers();
 
 describe('useLoan', () => {
 	it('should handle multiple update calls at the same time', () => {
-		const { result } = renderHook(() => useLoan(fields));
+		const { result } = renderHook(() => useLoan());
 
 		const { getFieldValue, updateLoan } = result.current;
 

@@ -17,7 +17,9 @@ describe('LoanField', () => {
 		expect(
 			input.parentElement?.classList.contains('loan-field__invalid')
 		).toEqual(false);
-		expect(screen.getByText('Can only use alphabetical characters')).toBeDefined();
+		expect(
+			screen.getByText('Can only use alphabetical characters')
+		).toBeDefined();
 	});
 
 	it('shows red error message after blur', async () => {
