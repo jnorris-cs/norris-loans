@@ -1739,7 +1739,7 @@
     debug "^4.3.4"
     ts-api-utils "^2.0.0"
 
-"@typescript-eslint/types@8.20.0":
+"@typescript-eslint/types@8.20.0", "@typescript-eslint/types@^8.19.0":
   version "8.20.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-8.20.0.tgz#487de5314b5415dee075e95568b87a75a3e730cf"
   integrity sha512-cqaMiY72CkP+2xZRrFt3ExRBu0WmVitN/rYPZErA80mHjHx/Svgp8yfbzkJmDoQ/whcytOPO9/IZXnOc+wigRA==
@@ -1758,7 +1758,7 @@
     semver "^7.6.0"
     ts-api-utils "^2.0.0"
 
-"@typescript-eslint/utils@8.20.0":
+"@typescript-eslint/utils@8.20.0", "@typescript-eslint/utils@^8.19.0":
   version "8.20.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-8.20.0.tgz#53127ecd314b3b08836b4498b71cdb86f4ef3aa2"
   integrity sha512-dq70RUw6UK9ei7vxc4KQtBRk7qkHZv447OUZ6RPQMQl71I3NZxQJX/f32Smr+iqWrB02pHKn2yAdHBb0KNrRMA==
@@ -2643,6 +2643,15 @@ escodegen@^2.0.0:
     esutils "^2.0.2"
   optionalDependencies:
     source-map "~0.6.1"
+
+eslint-plugin-perfectionist@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-perfectionist/-/eslint-plugin-perfectionist-4.6.0.tgz#6cc9bc1f0b8efceb222af8b3fed5a05bacc81afb"
+  integrity sha512-kOswTebUK0LlYExRwqz7YQtvyTUIRsKfp8XrwBBeHGh2e8MBOS6K+7VvG6HpmNckyKySi1I96uPeAlptMFGcRQ==
+  dependencies:
+    "@typescript-eslint/types" "^8.19.0"
+    "@typescript-eslint/utils" "^8.19.0"
+    natural-orderby "^5.0.0"
 
 eslint-plugin-react-hooks@^5.0.0:
   version "5.1.0"
@@ -4153,6 +4162,11 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
+
+natural-orderby@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/natural-orderby/-/natural-orderby-5.0.0.tgz#bb655f669ee9c84e82cdc6cddbba25eb263cd9f4"
+  integrity sha512-kKHJhxwpR/Okycz4HhQKKlhWe4ASEfPgkSWNmKFHd7+ezuQlxkA5cM3+XkBPvm1gmHen3w53qsYAv+8GwRrBlg==
 
 node-int64@^0.4.0:
   version "0.4.0"

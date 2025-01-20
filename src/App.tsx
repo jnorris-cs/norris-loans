@@ -1,11 +1,12 @@
 import './App.css';
+
 import 'tachyons';
-import SpinningIndicator from 'components/SpinningIndicator/SpinningIndicator';
 import LoanForm from 'components/LoanForm/LoanForm';
+import SpinningIndicator from 'components/SpinningIndicator/SpinningIndicator';
 import useMetadata from 'hooks/useMetadata/useMetadata';
 
 const App = () => {
-	const { isLoadingMetadata, fieldsMetadata } = useMetadata();
+	const { fieldsMetadata, isLoadingMetadata } = useMetadata();
 
 	return (
 		<div className="content pa3">

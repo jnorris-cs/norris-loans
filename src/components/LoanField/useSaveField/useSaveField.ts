@@ -1,17 +1,18 @@
-import { useEffect } from 'react';
-import { FieldAction } from '../FieldReducer/FieldReducer';
-import { extractErrorMessage } from 'utils/api';
-
 import type { UpdateLoanContextType } from 'contexts/UpdateLoanContext';
 import type { Dispatch } from 'react';
 import type { FieldMetadata, InputValue, Loan } from 'types';
 
+import { useEffect } from 'react';
+import { extractErrorMessage } from 'utils/api';
+
+import { FieldAction } from '../FieldReducer/FieldReducer';
+
 interface SaveFieldProps {
 	dispatch: Dispatch<FieldAction>;
-	isSaving: boolean;
 	field: FieldMetadata;
-	value: InputValue;
+	isSaving: boolean;
 	updateLoan: UpdateLoanContextType['updateLoan'];
+	value: InputValue;
 }
 
 // this part is obvious not production code :grimmacing:
@@ -31,8 +32,8 @@ const apiPatchCall = async (patchRecord: Partial<Loan>, value: InputValue) => {
 const updateRecord = async ({
 	dispatch,
 	field,
-	value,
 	updateLoan,
+	value,
 }: Omit<SaveFieldProps, 'isSaving'>) => {
 	const patchRecord = {
 		[field.entity]: {
@@ -57,16 +58,16 @@ const updateRecord = async ({
 
 export const useSaveField = ({
 	dispatch,
-	isSaving,
 	field,
-	value,
+	isSaving,
 	updateLoan,
+	value,
 }: SaveFieldProps) => {
 	useEffect(() => {
 		if (!isSaving) {
 			return;
 		}
 
-		updateRecord({ field, value, dispatch, updateLoan });
-	}, [dispatch, isSaving, field, value]);
+		updateRecord({ dispatch, field, updateLoan, value });
+	}, [dispatch, isSaving, field, value, updateLoan]);
 };

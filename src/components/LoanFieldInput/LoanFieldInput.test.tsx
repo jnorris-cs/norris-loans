@@ -1,7 +1,9 @@
-import { render } from '@testing-library/react';
-import LoanFieldInput from './LoanFieldInput';
-import fields from '../../_fixtures/fields';
 import type { FieldMetadata } from 'types';
+
+import { render } from '@testing-library/react';
+
+import fields from '../../_fixtures/fields';
+import LoanFieldInput from './LoanFieldInput';
 
 const dateField = fields.find((f) => f.type === 'date') as FieldMetadata;
 const moneyField = fields.find((f) => f.type === 'string') as FieldMetadata;
@@ -12,10 +14,10 @@ const generatePropsFromField = (field: FieldMetadata) => {
 		field: field,
 		id: 'test',
 		name: 'test',
-		value: 'value',
-		onChange: () => {},
 		onBlur: () => {},
+		onChange: () => {},
 		onFocus: () => {},
+		value: 'value',
 	};
 };
 

@@ -1,27 +1,27 @@
-export type EntityType = 'Loan' | 'Borrower';
-export type FieldType = 'string' | 'money' | 'date';
-export type InputValue = string | number;
-
-export type Loan = Record<string, Record<string, InputValue | undefined>>;
-
+export type EntityType = 'Borrower' | 'Loan';
 export type FieldMetadata = {
-	entity: EntityType;
 	display: string;
+	entity: EntityType;
 	field: string;
 	type: FieldType;
 };
+export type FieldType = 'date' | 'money' | 'string';
 
-export type StringFieldMetadata = FieldMetadata & {
-	type: 'string';
-	conditions: { regex: string };
-};
+export type InputValue = number | string;
 
-export type MoneyFieldMetadata = FieldMetadata & {
-	type: 'money';
-	conditions: { maxValue: number; minValue: number };
-};
+export type Loan = Record<string, Record<string, InputValue | undefined>>;
 
 export type LoanEntityMetadata = {
-	name: EntityType;
 	fields: FieldMetadata[];
+	name: EntityType;
 };
+
+export type MoneyFieldMetadata = {
+	conditions: { maxValue: number; minValue: number };
+	type: 'money';
+} & FieldMetadata;
+
+export type StringFieldMetadata = {
+	conditions: { regex: string };
+	type: 'string';
+} & FieldMetadata;

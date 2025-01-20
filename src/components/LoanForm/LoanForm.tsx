@@ -1,9 +1,10 @@
-import LoanEntity from 'components/LoanEntity/LoanEntity';
 import type { FieldMetadata } from 'types';
 
-import { useLoan } from './useLoan/useLoan';
-import { useEntities } from './useEntities/useEntities';
+import LoanEntity from 'components/LoanEntity/LoanEntity';
 import { UpdateLoanContext } from 'contexts/UpdateLoanContext';
+
+import { useEntities } from './useEntities/useEntities';
+import { useLoan } from './useLoan/useLoan';
 
 interface LoanFormProps {
 	fields: FieldMetadata[];

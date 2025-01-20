@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 export default <T>(
 	url: string
-): { data: T | null; isLoading: boolean; hasError: boolean } => {
+): { data: null | T; hasError: boolean; isLoading: boolean } => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [hasError, setHasError] = useState(false);
-	const [data, setData] = useState<T | null>(null);
+	const [data, setData] = useState<null | T>(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -29,8 +29,8 @@ export default <T>(
 	}, [url]);
 
 	return {
-		isLoading,
 		data,
 		hasError,
+		isLoading,
 	};
 };

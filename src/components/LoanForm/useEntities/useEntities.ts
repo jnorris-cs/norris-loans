@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
 import type { EntityType, FieldMetadata, LoanEntityMetadata } from 'types';
+
+import { useMemo } from 'react';
 
 export const useEntities = (fields: FieldMetadata[]) => {
 	return useMemo<LoanEntityMetadata[]>(() => {
@@ -17,8 +18,8 @@ export const useEntities = (fields: FieldMetadata[]) => {
 
 		return Object.keys(map).map((entity) => {
 			return {
-				name: entity as EntityType,
 				fields: map[entity] ?? [],
+				name: entity as EntityType,
 			};
 		});
 	}, [fields]);

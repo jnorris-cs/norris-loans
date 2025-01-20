@@ -1,8 +1,9 @@
-import { useCallback, useState } from 'react';
 import type { LoanEntityMetadata } from 'types';
-import LoanField from 'components/LoanField/LoanField';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LoanField from 'components/LoanField/LoanField';
+import { useCallback, useState } from 'react';
 
 interface LoanEntityProps {
 	entity: LoanEntityMetadata;

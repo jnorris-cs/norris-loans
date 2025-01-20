@@ -1,14 +1,15 @@
-import StringLoanFieldInput from './StringLoanFieldInput/StringLoanFieldInput';
-import MoneyLoanFieldInput from './MoneyLoanFieldInput/MoneyLoanFieldInput';
-import DateLoanFieldInput from './DateLoanFieldInput/DateLoanFieldInput';
+import type { FieldMetadata, InputValue } from 'types';
 
 import type {
-	StandardInputProps,
 	DateLoanFieldInputProps,
 	MoneyLoanFieldInputProps,
+	StandardInputProps,
 	StringLoanFieldInputProps,
 } from './types';
-import type { FieldMetadata, InputValue } from 'types';
+
+import DateLoanFieldInput from './DateLoanFieldInput/DateLoanFieldInput';
+import MoneyLoanFieldInput from './MoneyLoanFieldInput/MoneyLoanFieldInput';
+import StringLoanFieldInput from './StringLoanFieldInput/StringLoanFieldInput';
 
 const isStringField = (
 	props: StandardInputProps

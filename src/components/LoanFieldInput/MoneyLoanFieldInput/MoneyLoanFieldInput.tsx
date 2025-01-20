@@ -1,11 +1,13 @@
-import CurrencyInput from 'react-currency-input-field';
 import type { MoneyFieldMetadata } from 'types';
+
 import { useCallback } from 'react';
+import CurrencyInput from 'react-currency-input-field';
+
 import type { StandardInputProps } from '../types';
 
 const formatter = new Intl.NumberFormat('en-US', {
-	style: 'currency',
 	currency: 'USD',
+	style: 'currency',
 });
 
 type MoneyLoanFieldInputProps = {
@@ -22,7 +24,7 @@ const MoneyLoanFieldInput = ({
 		(stringValue: string | undefined): void => {
 			const numericValue = Number(stringValue);
 			const errorMessages: string[] = [];
-			const { minValue, maxValue } = field.conditions;
+			const { maxValue, minValue } = field.conditions;
 			const isMinCorrect = !minValue || minValue <= numericValue;
 			const isMaxCorrect = !maxValue || maxValue >= numericValue;
 
@@ -38,8 +40,8 @@ const MoneyLoanFieldInput = ({
 			}
 
 			onChange({
-				hasError: !isMinCorrect || !isMaxCorrect,
 				errorMessage: errorMessages.join(' '),
+				hasError: !isMinCorrect || !isMaxCorrect,
 				value: numericValue,
 			});
 		},
@@ -48,9 +50,9 @@ const MoneyLoanFieldInput = ({
 
 	return (
 		<CurrencyInput
-			prefix="$"
 			decimalsLimit={2}
 			onValueChange={onComponentChange}
+			prefix="$"
 			{...restProps}
 		/>
 	);

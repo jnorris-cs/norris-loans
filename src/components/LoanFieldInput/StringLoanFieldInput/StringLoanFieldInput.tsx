@@ -1,6 +1,8 @@
-import type { StandardInputProps } from '../types';
 import type { StringFieldMetadata } from 'types';
+
 import { useCallback, useMemo } from 'react';
+
+import type { StandardInputProps } from '../types';
 
 type StringLoanFieldInputProps = {
 	field: StringFieldMetadata;
@@ -23,9 +25,9 @@ const StringLoanFieldInput = ({
 			const isValid = regex.test(value);
 
 			onChange({
+				errorMessage: !isValid ? 'Must not use invalid charactors' : undefined,
 				hasError: !isValid,
 				value: value,
-				errorMessage: !isValid ? 'Must not use invalid charactors' : undefined,
 			});
 		},
 		[onChange, regex]
@@ -33,8 +35,8 @@ const StringLoanFieldInput = ({
 
 	return (
 		<input
-			type="text"
 			onChange={onComponentChange}
+			type="text"
 			{...restProps}
 		/>
 	);

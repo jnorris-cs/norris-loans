@@ -1,12 +1,13 @@
-import { createContext } from 'react';
 import type { FieldMetadata, InputValue, Loan } from 'types';
 
+import { createContext } from 'react';
+
 export interface UpdateLoanContextType {
-	updateLoan: (loan: Loan) => void;
 	getFieldValue: (field: FieldMetadata) => InputValue;
+	updateLoan: (loan: Loan) => void;
 }
 
 export const UpdateLoanContext = createContext<UpdateLoanContextType>({
-	updateLoan: () => {},
 	getFieldValue: () => '',
+	updateLoan: () => {},
 });

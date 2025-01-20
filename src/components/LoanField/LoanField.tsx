@@ -1,15 +1,16 @@
+import type { FieldMetadata, InputValue } from 'types';
+
 import LoanFieldInput from 'components/LoanFieldInput/LoanFieldInput';
-import LoanFieldIcon from './LoanFieldIcon/LoanFieldIcon';
+import { UpdateLoanContext } from 'contexts/UpdateLoanContext';
+import { useCallback, useContext, useMemo, useReducer } from 'react';
+
 import {
+	FieldChangeAction,
 	fieldReducer,
 	initialState,
-	FieldChangeAction,
 } from './FieldReducer/FieldReducer';
-import { useCallback, useMemo, useReducer, useContext } from 'react';
-import type { FieldMetadata, InputValue } from 'types';
+import LoanFieldIcon from './LoanFieldIcon/LoanFieldIcon';
 import { useSaveField } from './useSaveField/useSaveField';
-import { UpdateLoanContext } from 'contexts/UpdateLoanContext';
-
 import './LoanField.scss';
 
 interface LoanFieldProps {
@@ -19,7 +20,7 @@ interface LoanFieldProps {
 
 const LoanField = ({ field }: LoanFieldProps) => {
 	// field state
-	const { updateLoan, getFieldValue } = useContext(UpdateLoanContext);
+	const { getFieldValue, updateLoan } = useContext(UpdateLoanContext);
 	const value = getFieldValue(field);
 	const [state, dispatch] = useReducer(fieldReducer, {
 		...initialState,
@@ -28,11 +29,11 @@ const LoanField = ({ field }: LoanFieldProps) => {
 	});
 
 	useSaveField({
-		isSaving: state.isSaving,
-		field,
-		value: state.value,
 		dispatch,
+		field,
+		isSaving: state.isSaving,
 		updateLoan,
+		value: state.value,
 	});
 
 	// html values
@@ -76,10 +77,10 @@ const LoanField = ({ field }: LoanFieldProps) => {
 				field={field}
 				id={id}
 				name={id}
-				value={state.value}
-				onChange={onChange}
 				onBlur={onBlur}
+				onChange={onChange}
 				onFocus={onFocus}
+				value={state.value}
 			/>
 			<LoanFieldIcon {...state} />
 			{state.errorMessage && (

@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-undef
 module.exports = {
+	plugins: [],
 	presets: [
 		[
 			'@babel/preset-env',
@@ -17,5 +18,4 @@ module.exports = {
 		], // Adds support for JSX
 		'@babel/preset-typescript', // Adds support for typescript
 	],
-	plugins: [],
 };
