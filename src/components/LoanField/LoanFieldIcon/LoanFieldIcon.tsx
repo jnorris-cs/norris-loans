@@ -1,4 +1,4 @@
-import type { State } from "../../../reducers/FieldReducer";
+import type { State } from "../FieldReducer/FieldReducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faSpinner,
@@ -13,18 +13,35 @@ const LoanFieldIcon = ({
 	hasError,
 	isDirty,
 	hasSaved,
+	errorMessage,
 }: LoanFieldIconProps) => {
 	if (isSaving) {
-		return <FontAwesomeIcon icon={faSpinner} className=" ml2 fa-spin" />;
+		return (
+			<FontAwesomeIcon
+				icon={faSpinner}
+				className=" ml2 fa-spin gray"
+				title="Saving..."
+			/>
+		);
 	}
 
 	if (hasSaved) {
-		return <FontAwesomeIcon icon={faCheckCircle} className=" ml2 green" />;
+		return (
+			<FontAwesomeIcon
+				icon={faCheckCircle}
+				className=" ml2 gray"
+				title="Saved"
+			/>
+		);
 	}
 
 	if (hasError && isDirty) {
 		return (
-			<FontAwesomeIcon icon={faExclamationTriangle} className=" ml2 dark-red" />
+			<FontAwesomeIcon
+				icon={faExclamationTriangle}
+				className=" ml2 dark-red"
+				title={errorMessage}
+			/>
 		);
 	}
 };

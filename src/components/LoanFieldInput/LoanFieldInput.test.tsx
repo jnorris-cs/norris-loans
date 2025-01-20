@@ -10,28 +10,34 @@ const stringField = fields.find((f) => f.type === "money") as FieldMetadata;
 const generatePropsFromField = (field: FieldMetadata) => {
 	return {
 		field: field,
-		id:'test',
-		name: 'test',
-		value: 'value',
+		id: "test",
+		name: "test",
+		value: "value",
 		onChange: () => {},
 		onBlur: () => {},
 		onFocus: () => {},
-	}
-}
+	};
+};
 
 describe("LoanFieldInput", () => {
 	it("renders date field correct", () => {
-		const result = render(<LoanFieldInput {...generatePropsFromField(dateField)} />);
+		const result = render(
+			<LoanFieldInput {...generatePropsFromField(dateField)} />,
+		);
 		expect(result.baseElement.firstChild).toMatchSnapshot();
 	});
 
 	it("renders money field correct", () => {
-		const result = render(<LoanFieldInput {...generatePropsFromField(moneyField)} />);
+		const result = render(
+			<LoanFieldInput {...generatePropsFromField(moneyField)} />,
+		);
 		expect(result.baseElement.firstChild).toMatchSnapshot();
 	});
 
 	it("renders string field correct", () => {
-		const result = render(<LoanFieldInput {...generatePropsFromField(stringField)} />);
+		const result = render(
+			<LoanFieldInput {...generatePropsFromField(stringField)} />,
+		);
 		expect(result.baseElement.firstChild).toMatchSnapshot();
 	});
 });

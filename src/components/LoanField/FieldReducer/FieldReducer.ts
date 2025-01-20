@@ -1,4 +1,4 @@
-import type { InputValue } from "../types";
+import type { InputValue } from "../../../types";
 
 export interface State {
 	isDirty: boolean; // has user blurred once?

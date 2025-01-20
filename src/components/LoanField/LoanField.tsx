@@ -1,13 +1,13 @@
 import LoanFieldInput from "../LoanFieldInput/LoanFieldInput";
-import LoanFieldIcon from "./LoadFieldIcon/LoadFieldIcon";
+import LoanFieldIcon from "./LoanFieldIcon/LoanFieldIcon";
 import {
 	fieldReducer,
 	initialState,
 	FieldChangeAction,
-} from "../../reducers/FieldReducer";
+} from "./FieldReducer/FieldReducer";
 import { useCallback, useMemo, useReducer } from "react";
 import type { FieldMetadata, InputValue } from "../../types";
-import {useSaveField} from '../../hooks/useSaveField/useSaveField'
+import { useSaveField } from "./useSaveField/useSaveField";
 
 import "./LoanField.scss";
 
@@ -53,8 +53,8 @@ const LoanField = ({ field, value = "" }: LoanFieldProps) => {
 
 	useSaveField({
 		isSaving: state.isSaving,
-		dispatch
-	})
+		dispatch,
+	});
 
 	return (
 		<div className={classNames}>
