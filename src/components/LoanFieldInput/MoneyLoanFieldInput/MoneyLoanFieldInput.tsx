@@ -23,6 +23,11 @@ const MoneyLoanFieldInput = ({
 	const onComponentChange = useCallback(
 		(stringValue: string | undefined): void => {
 			const numericValue = Number(stringValue);
+			
+			if (isNaN(numericValue)){
+				return;
+			}
+
 			const errorMessages: string[] = [];
 			const { maxValue, minValue } = field.conditions;
 			const isMinCorrect = !minValue || minValue <= numericValue;
