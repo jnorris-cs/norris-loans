@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import fields from '../../_fixtures/fields';
+import fields from '../../__tests__/fixtures/fields';
 import LoanForm from './LoanForm';
 
 describe('LoanForm', () => {

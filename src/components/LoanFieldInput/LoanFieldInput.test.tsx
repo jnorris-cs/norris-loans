@@ -2,7 +2,7 @@ import type { FieldMetadata } from 'types';
 
 import { render } from '@testing-library/react';
 
-import fields from '../../_fixtures/fields';
+import fields from '../../__tests__/fixtures/fields';
 import LoanFieldInput from './LoanFieldInput';
 
 const dateField = fields.find((f) => f.type === 'date') as FieldMetadata;
