@@ -12,7 +12,7 @@ interface LoanFormProps {
 
 const LoanForm = ({ fields }: LoanFormProps) => {
 	const entities = useGroupFieldsByEntity(fields); // convert flat fields into entity objects
-	const updateLoanContext = useLoan();
+	const updateLoanContext = useLoan(fields);
 
 	return (
 		<form
