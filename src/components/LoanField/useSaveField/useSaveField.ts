@@ -21,7 +21,7 @@ const sleep = (ms: number) => {
 };
 const apiPatchCall = async (patchRecord: Partial<Loan>, value: InputValue) => {
 	console.log('patch api call with this payload', patchRecord);
-	await sleep(3000); // 3 seconds to similate patch
+	await sleep(2000); // 2 seconds to simulate patch
 
 	// test api failures with "bad" or a number that includes "99"
 	if (value === 'bad' || value.toString().includes('99')) {

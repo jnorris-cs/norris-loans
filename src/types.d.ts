@@ -6,9 +6,7 @@ export type FieldMetadata = {
 	type: FieldType;
 };
 export type FieldType = 'date' | 'money' | 'string';
-
 export type InputValue = number | string;
-
 export type Loan = Record<string, Record<string, InputValue | undefined>>;
 
 export type LoanEntityMetadata = {

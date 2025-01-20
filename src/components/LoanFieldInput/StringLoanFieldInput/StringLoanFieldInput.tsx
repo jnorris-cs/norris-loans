@@ -25,7 +25,7 @@ const StringLoanFieldInput = ({
 			const isValid = regex.test(value);
 
 			onChange({
-				errorMessage: !isValid ? 'Must not use invalid charactors' : undefined,
+				errorMessage: !isValid ? 'Must not use invalid characters' : undefined,
 				hasError: !isValid,
 				value: value,
 			});
