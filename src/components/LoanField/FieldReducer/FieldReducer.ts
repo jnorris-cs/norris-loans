@@ -6,7 +6,7 @@ export interface State {
 	hasError: boolean;
 	errorMessage?: string;
 	initialValue?: InputValue;
-	value?: InputValue;
+	value: InputValue;
 	isSaving: boolean;
 	hasSaved?: boolean;
 }
@@ -35,6 +35,7 @@ export const initialState: State = {
 	isDirty: false,
 	hasError: false,
 	isSaving: false,
+	value: '',
 };
 
 export const fieldReducer = (state: State, action: FieldAction): State => {

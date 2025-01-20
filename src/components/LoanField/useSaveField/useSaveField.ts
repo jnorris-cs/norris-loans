@@ -37,6 +37,11 @@ const updateRecord = async ({
 	try {
 		await apiPatchCall(patchRecord, value);
 		dispatch({ type: "save-success" });
+
+		// clear saver message after 3 seconds
+		setTimeout(() => {
+			dispatch({ type: "clear-save-success" });
+		}, 3000);
 	} catch (error: unknown) {
 		const errorMessage: string =
 			typeof error === "object" &&
@@ -48,9 +53,7 @@ const updateRecord = async ({
 					? error
 					: "Save Failed";
 		dispatch({ type: "save-failure", value: errorMessage });
-	} finally {
-		dispatch({ type: "clear-save-success" });
-	}
+	} 
 };
 
 export const useSaveField = ({
@@ -65,5 +68,5 @@ export const useSaveField = ({
 		}
 
 		updateRecord({ field, value, dispatch });
-	}, [dispatch, isSaving]);
+	}, [dispatch, isSaving, field, value]);
 };
