@@ -2,7 +2,7 @@ import type { FieldMetadata, InputValue, Loan } from 'types';
 
 import { useCallback, useState } from 'react';
 import { deepMerge } from 'utils/deepMerge';
-import { getFromStorage , setInStorage} from 'utils/localStorage';
+import { getFromStorage, setInStorage } from 'utils/localStorage';
 
 const LOAN_STORAGE_KEY = 'loan';
 

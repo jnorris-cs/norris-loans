@@ -23,8 +23,8 @@ const MoneyLoanFieldInput = ({
 	const onComponentChange = useCallback(
 		(stringValue: string | undefined): void => {
 			const numericValue = Number(stringValue);
-			
-			if (isNaN(numericValue)){
+
+			if (isNaN(numericValue)) {
 				return;
 			}
 

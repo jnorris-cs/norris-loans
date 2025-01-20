@@ -15,7 +15,11 @@ const LoanForm = ({ fields }: LoanFormProps) => {
 	const updateLoanContext = useLoan(fields);
 
 	return (
-		<form action="#" autoComplete="off" className="content pt3">
+		<form
+			action="#"
+			autoComplete="off"
+			className="content pt3"
+		>
 			<UpdateLoanContext.Provider value={updateLoanContext}>
 				{entities.map((entity) => (
 					<LoanEntity
