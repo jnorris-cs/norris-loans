@@ -1,8 +1,8 @@
 export function deepMerge<T extends Record<string, unknown>>(
-	target: T,
+	target: Record<string, unknown>,
 	...sources: Array<Partial<T>>
 ): T {
-	if (!sources.length) return target;
+	if (!sources.length) return target as T;
 	const source = sources.shift();
 
 	if (isObject(target) && isObject(source)) {
@@ -10,11 +10,9 @@ export function deepMerge<T extends Record<string, unknown>>(
 			if (Object.prototype.hasOwnProperty.call(source, key)) {
 				const sourceValue = source[key];
 				if (isObject(sourceValue) && isObject(target[key])) {
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					target[key] = deepMerge(target[key] as any, sourceValue as any);
+					target[key] = deepMerge(target[key] as Record<string, unknown>, sourceValue as Record<string, unknown>);
 				} else {
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					(target as any)[key] = sourceValue;
+					target[key] = sourceValue;
 				}
 			}
 		}

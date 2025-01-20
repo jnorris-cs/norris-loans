@@ -6,6 +6,7 @@ import { getFromStorage, setInStorage } from 'utils/localStorage';
 
 const LOAN_STORAGE_KEY = 'loan';
 
+// build an empty loan object with all fields set to undefined
 export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
 	const loan: Loan = {};
 

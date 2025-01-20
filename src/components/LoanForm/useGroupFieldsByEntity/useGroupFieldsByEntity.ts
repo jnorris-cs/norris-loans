@@ -2,7 +2,7 @@ import type { EntityType, FieldMetadata, LoanEntityMetadata } from 'types';
 
 import { useMemo } from 'react';
 
-export const useEntities = (fields: FieldMetadata[]) => {
+export const useGroupFieldsByEntity = (fields: FieldMetadata[]) => {
 	return useMemo<LoanEntityMetadata[]>(() => {
 		const map = fields.reduce<Record<string, FieldMetadata[]>>(
 			(entities, field) => {

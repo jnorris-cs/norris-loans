@@ -3,7 +3,7 @@ import type { FieldMetadata } from 'types';
 import LoanEntity from 'components/LoanEntity/LoanEntity';
 import { UpdateLoanContext } from 'contexts/UpdateLoanContext';
 
-import { useEntities } from './useEntities/useEntities';
+import { useGroupFieldsByEntity } from './useGroupFieldsByEntity/useGroupFieldsByEntity';
 import { useLoan } from './useLoan/useLoan';
 
 interface LoanFormProps {
@@ -11,7 +11,7 @@ interface LoanFormProps {
 }
 
 const LoanForm = ({ fields }: LoanFormProps) => {
-	const entities = useEntities(fields); // convert flat fields into entity objects
+	const entities = useGroupFieldsByEntity(fields); // convert flat fields into entity objects
 	const updateLoanContext = useLoan(fields);
 
 	return (

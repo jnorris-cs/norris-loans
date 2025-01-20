@@ -4,8 +4,6 @@ import userEvent from '@testing-library/user-event';
 import fields from '../../__fixtures__/fields';
 import LoanField from './LoanField';
 
-jest.useFakeTimers();
-
 const stringField =
 	fields.find((field) => field.type === 'string') ?? fields[0];
 describe('LoanField', () => {
@@ -19,7 +17,7 @@ describe('LoanField', () => {
 		expect(
 			input.parentElement?.classList.contains('loan-field__invalid')
 		).toEqual(false);
-		expect(screen.getByText('Must not use invalid characters')).toBeDefined();
+		expect(screen.getByText('Can only use alphabetical characters')).toBeDefined();
 	});
 
 	it('shows red error message after blur', async () => {
@@ -34,12 +32,12 @@ describe('LoanField', () => {
 			input.parentElement?.classList.contains('loan-field__invalid')
 		).toEqual(true);
 		expect(
-			screen.getByText('Must not use invalid characters', {
+			screen.getByText('Can only use alphabetical characters', {
 				selector: 'svg title',
 			})
 		).toBeDefined();
 		expect(
-			screen.getByText('Must not use invalid characters', {
+			screen.getByText('Can only use alphabetical characters', {
 				selector: '.loan-field-error-message',
 			})
 		).toBeDefined();

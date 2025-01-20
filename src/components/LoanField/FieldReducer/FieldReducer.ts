@@ -43,7 +43,7 @@ export const fieldReducer = (state: State, action: FieldAction): State => {
 		case 'blur':
 			return {
 				...state,
-				// if value hasnt changed, go back to initial values
+				// if value hasn't changed, go back to initial values
 				isDirty: state.value !== state.initialValue,
 				isFocused: false,
 				isSaving: action.value,

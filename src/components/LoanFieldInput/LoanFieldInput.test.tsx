@@ -12,8 +12,8 @@ const stringField = fields.find((f) => f.type === 'money') as FieldMetadata;
 const generatePropsFromField = (field: FieldMetadata) => {
 	return {
 		field: field,
-		id: 'test',
-		name: 'test',
+		id: 'test-id',
+		name: 'test-name',
 		onBlur: () => {},
 		onChange: () => {},
 		onFocus: () => {},

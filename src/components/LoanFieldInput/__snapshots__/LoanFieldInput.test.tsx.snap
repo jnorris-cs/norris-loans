@@ -4,8 +4,8 @@ exports[`LoanFieldInput renders date field correct 1`] = `
 <div>
   <input
     field="[object Object]"
-    id="test"
-    name="test"
+    id="test-id"
+    name="test-name"
     type="date"
     value="value"
   />
@@ -15,8 +15,8 @@ exports[`LoanFieldInput renders date field correct 1`] = `
 exports[`LoanFieldInput renders money field correct 1`] = `
 <div>
   <input
-    id="test"
-    name="test"
+    id="test-id"
+    name="test-name"
     type="text"
     value="value"
   />
@@ -26,9 +26,9 @@ exports[`LoanFieldInput renders money field correct 1`] = `
 exports[`LoanFieldInput renders string field correct 1`] = `
 <div>
   <input
-    id="test"
+    id="test-id"
     inputmode="decimal"
-    name="test"
+    name="test-name"
     type="text"
     value="$NaN"
   />

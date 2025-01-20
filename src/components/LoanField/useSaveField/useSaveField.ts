@@ -46,7 +46,7 @@ const updateRecord = async ({
 		dispatch({ type: 'save-success' });
 		updateLoan(patchRecord); // update hoisted state
 
-		// clear saver message after 3 seconds
+		// clear saved message after 3 seconds
 		setTimeout(() => {
 			dispatch({ type: 'clear-save-success' });
 		}, 3000);
