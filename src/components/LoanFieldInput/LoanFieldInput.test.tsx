@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import LoanFieldInput from './LoanFieldInput';
 import fields from '../../_fixtures/fields';
-import type { FieldMetadata } from '../../types';
+import type { FieldMetadata } from 'types';
 
 const dateField = fields.find((f) => f.type === 'date') as FieldMetadata;
 const moneyField = fields.find((f) => f.type === 'string') as FieldMetadata;

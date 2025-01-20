@@ -1,6 +1,6 @@
-import type { FieldMetadata, InputValue, Loan } from '../../../types';
-import { getFromStorage } from '../../../utils/localStorage';
-import { deepMerge } from '../../../utils/deepMerge';
+import type { FieldMetadata, InputValue, Loan } from 'types';
+import { getFromStorage } from 'utils/localStorage';
+import { deepMerge } from 'utils/deepMerge';
 import { useCallback, useState } from 'react';
 
 export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {

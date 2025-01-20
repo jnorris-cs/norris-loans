@@ -1,5 +1,5 @@
 import type { StandardInputProps } from '../types';
-import type { StringFieldMetadata } from '../../../types';
+import type { StringFieldMetadata } from 'types';
 import { useCallback, useMemo } from 'react';
 
 type StringLoanFieldInputProps = {

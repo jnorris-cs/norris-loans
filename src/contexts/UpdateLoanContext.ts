@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { FieldMetadata, InputValue, Loan } from '../types';
+import type { FieldMetadata, InputValue, Loan } from 'types';
 
 export interface UpdateLoanContextType {
 	updateLoan: (loan: Loan) => void;

@@ -1,5 +1,5 @@
 import CurrencyInput from 'react-currency-input-field';
-import type { MoneyFieldMetadata } from '../../../types';
+import type { MoneyFieldMetadata } from 'types';
 import { useCallback } from 'react';
 import type { StandardInputProps } from '../types';
 

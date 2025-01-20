@@ -1,9 +1,5 @@
 import { useMemo } from 'react';
-import type {
-	EntityType,
-	FieldMetadata,
-	LoanEntityMetadata,
-} from '../../../types';
+import type { EntityType, FieldMetadata, LoanEntityMetadata } from 'types';
 
 export const useEntities = (fields: FieldMetadata[]) => {
 	return useMemo<LoanEntityMetadata[]>(() => {

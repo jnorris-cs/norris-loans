@@ -1,4 +1,4 @@
-import LoanFieldInput from '../LoanFieldInput/LoanFieldInput';
+import LoanFieldInput from 'components/LoanFieldInput/LoanFieldInput';
 import LoanFieldIcon from './LoanFieldIcon/LoanFieldIcon';
 import {
 	fieldReducer,
@@ -6,9 +6,9 @@ import {
 	FieldChangeAction,
 } from './FieldReducer/FieldReducer';
 import { useCallback, useMemo, useReducer, useContext } from 'react';
-import type { FieldMetadata, InputValue } from '../../types';
+import type { FieldMetadata, InputValue } from 'types';
 import { useSaveField } from './useSaveField/useSaveField';
-import { UpdateLoanContext } from '../../contexts/UpdateLoanContext';
+import { UpdateLoanContext } from 'contexts/UpdateLoanContext';
 
 import './LoanField.scss';
 

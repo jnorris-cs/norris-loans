@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
-import type { LoanEntityMetadata } from '../../types';
-import LoanField from '../LoanField/LoanField';
+import type { LoanEntityMetadata } from 'types';
+import LoanField from 'components/LoanField/LoanField';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 

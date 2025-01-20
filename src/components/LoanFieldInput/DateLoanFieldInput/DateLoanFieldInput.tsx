@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import type { FieldMetadata } from '../../../types';
+import type { FieldMetadata } from 'types';
 import type { StandardInputProps } from '../types';
 
 type DateLoanFieldInputProps = {

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { FieldAction } from '../FieldReducer/FieldReducer';
-import { extractErrorMessage } from '../../../utils/api';
+import { extractErrorMessage } from 'utils/api';
 
-import type { UpdateLoanContextType } from '../../../contexts/UpdateLoanContext';
+import type { UpdateLoanContextType } from 'contexts/UpdateLoanContext';
 import type { Dispatch } from 'react';
-import type { FieldMetadata, InputValue, Loan } from '../../../types';
+import type { FieldMetadata, InputValue, Loan } from 'types';
 
 interface SaveFieldProps {
 	dispatch: Dispatch<FieldAction>;

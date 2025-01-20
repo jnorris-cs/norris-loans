@@ -8,7 +8,7 @@ import type {
 	MoneyLoanFieldInputProps,
 	StringLoanFieldInputProps,
 } from './types';
-import type { FieldMetadata, InputValue } from '../../types';
+import type { FieldMetadata, InputValue } from 'types';
 
 const isStringField = (
 	props: StandardInputProps
