@@ -1,16 +1,16 @@
-import LoanFieldInput from "../LoanFieldInput/LoanFieldInput";
-import LoanFieldIcon from "./LoanFieldIcon/LoanFieldIcon";
+import LoanFieldInput from '../LoanFieldInput/LoanFieldInput';
+import LoanFieldIcon from './LoanFieldIcon/LoanFieldIcon';
 import {
 	fieldReducer,
 	initialState,
 	FieldChangeAction,
-} from "./FieldReducer/FieldReducer";
-import { useCallback, useMemo, useReducer, useContext } from "react";
-import type { FieldMetadata, InputValue } from "../../types";
-import { useSaveField } from "./useSaveField/useSaveField";
-import { UpdateLoanContext } from "../../contexts/UpdateLoanContext";
+} from './FieldReducer/FieldReducer';
+import { useCallback, useMemo, useReducer, useContext } from 'react';
+import type { FieldMetadata, InputValue } from '../../types';
+import { useSaveField } from './useSaveField/useSaveField';
+import { UpdateLoanContext } from '../../contexts/UpdateLoanContext';
 
-import "./LoanField.scss";
+import './LoanField.scss';
 
 interface LoanFieldProps {
 	field: FieldMetadata;
@@ -38,35 +38,38 @@ const LoanField = ({ field }: LoanFieldProps) => {
 	// html values
 	const id = useMemo(
 		() => `${field.entity}.${field.field}`,
-		[field.entity, field.field],
+		[field.entity, field.field]
 	);
 	const classNames = useMemo<string>(() => {
-		const classes = ["mb3", "loan-field"];
+		const classes = ['mb3', 'loan-field'];
 
 		if (state.hasError && state.isDirty) {
-			classes.push("loan-field__invalid");
+			classes.push('loan-field__invalid');
 		} else if (!state.hasError) {
-			classes.push("loan-field__valid");
+			classes.push('loan-field__valid');
 		}
 
-		return classes.join(" ");
+		return classes.join(' ');
 	}, [state.isDirty, state.hasError]);
 
 	// input events handlers
-	const onFocus = () => dispatch({ type: "focus" });
+	const onFocus = () => dispatch({ type: 'focus' });
 	const onChange = (payload: FieldChangeAction) =>
 		dispatch({
-			type: "change",
+			type: 'change',
 			value: payload,
 		});
 	const onBlur = useCallback(() => {
 		const canSave = !state.hasError && state.value !== state.initialValue;
-		dispatch({ type: "blur", value: canSave });
+		dispatch({ type: 'blur', value: canSave });
 	}, [dispatch, state.hasError, state.value, state.initialValue]);
 
 	return (
 		<div className={classNames}>
-			<label className="db mb1" htmlFor={id}>
+			<label
+				className="db mb1"
+				htmlFor={id}
+			>
 				{field.display}
 			</label>
 			<LoanFieldInput

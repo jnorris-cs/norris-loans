@@ -1,31 +1,31 @@
-import StringLoanFieldInput from "./StringLoanFieldInput/StringLoanFieldInput";
-import MoneyLoanFieldInput from "./MoneyLoanFieldInput/MoneyLoanFieldInput";
-import DateLoanFieldInput from "./DateLoanFieldInput/DateLoanFieldInput";
+import StringLoanFieldInput from './StringLoanFieldInput/StringLoanFieldInput';
+import MoneyLoanFieldInput from './MoneyLoanFieldInput/MoneyLoanFieldInput';
+import DateLoanFieldInput from './DateLoanFieldInput/DateLoanFieldInput';
 
 import type {
 	StandardInputProps,
 	DateLoanFieldInputProps,
 	MoneyLoanFieldInputProps,
 	StringLoanFieldInputProps,
-} from "./types";
-import type { FieldMetadata, InputValue } from "../../types";
+} from './types';
+import type { FieldMetadata, InputValue } from '../../types';
 
 const isStringField = (
-	props: StandardInputProps,
+	props: StandardInputProps
 ): props is StringLoanFieldInputProps => {
-	return props.field.type === "string";
+	return props.field.type === 'string';
 };
 
 const isDateField = (
-	props: StandardInputProps,
+	props: StandardInputProps
 ): props is DateLoanFieldInputProps => {
-	return props.field.type === "date";
+	return props.field.type === 'date';
 };
 
 const isMoneyField = (
-	props: StandardInputProps,
+	props: StandardInputProps
 ): props is MoneyLoanFieldInputProps => {
-	return props.field.type === "money";
+	return props.field.type === 'money';
 };
 
 type LoanFieldInputProps = {

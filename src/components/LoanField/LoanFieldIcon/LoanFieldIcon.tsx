@@ -1,12 +1,12 @@
-import type { State } from '../FieldReducer/FieldReducer'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import type { State } from '../FieldReducer/FieldReducer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faSpinner,
 	faCheckCircle,
 	faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
-type LoanFieldIconProps = Omit<State, 'isFocused' | 'value' | 'initialValue'>
+type LoanFieldIconProps = Omit<State, 'isFocused' | 'value' | 'initialValue'>;
 
 const LoanFieldIcon = ({
 	isSaving,
@@ -22,7 +22,7 @@ const LoanFieldIcon = ({
 				className=" ml2 fa-spin light-gray"
 				title="Saving..."
 			/>
-		)
+		);
 	}
 
 	if (hasSaved) {
@@ -32,7 +32,7 @@ const LoanFieldIcon = ({
 				className=" ml2 light-gray"
 				title="Saved"
 			/>
-		)
+		);
 	}
 
 	if (hasError && isDirty) {
@@ -42,8 +42,8 @@ const LoanFieldIcon = ({
 				className=" ml2 dark-red"
 				title={errorMessage}
 			/>
-		)
+		);
 	}
-}
+};
 
-export default LoanFieldIcon
+export default LoanFieldIcon;

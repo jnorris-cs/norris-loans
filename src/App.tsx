@@ -1,8 +1,8 @@
-import "./App.css";
-import "tachyons";
-import SpinningIndicator from "./components/SpinningIndicator/SpinningIndicator";
-import LoanForm from "./components/LoanForm/LoanForm";
-import useMetadata from "./hooks/useMetadata/useMetadata";
+import './App.css';
+import 'tachyons';
+import SpinningIndicator from './components/SpinningIndicator/SpinningIndicator';
+import LoanForm from './components/LoanForm/LoanForm';
+import useMetadata from './hooks/useMetadata/useMetadata';
 
 const App = () => {
 	const { isLoadingMetadata, fieldsMetadata } = useMetadata();

@@ -1,6 +1,6 @@
-import type { InputValue } from "../../types";
+import type { InputValue } from '../../types';
 
-export type FieldChangeAction = Pick<State, "hasError" | "errorMessage"> & {
+export type FieldChangeAction = Pick<State, 'hasError' | 'errorMessage'> & {
 	value: InputValue;
 };
 

@@ -1,11 +1,11 @@
-import CurrencyInput from "react-currency-input-field";
-import type { MoneyFieldMetadata } from "../../../types";
-import { useCallback } from "react";
-import type { StandardInputProps } from "../types";
+import CurrencyInput from 'react-currency-input-field';
+import type { MoneyFieldMetadata } from '../../../types';
+import { useCallback } from 'react';
+import type { StandardInputProps } from '../types';
 
-const formatter = new Intl.NumberFormat("en-US", {
-	style: "currency",
-	currency: "USD",
+const formatter = new Intl.NumberFormat('en-US', {
+	style: 'currency',
+	currency: 'USD',
 });
 
 type MoneyLoanFieldInputProps = {
@@ -28,22 +28,22 @@ const MoneyLoanFieldInput = ({
 
 			if (!isMinCorrect) {
 				errorMessages.push(
-					`must be greater than or equal to ${formatter.format(minValue)}`,
+					`must be greater than or equal to ${formatter.format(minValue)}`
 				);
 			}
 			if (!isMaxCorrect) {
 				errorMessages.push(
-					`must be less than or equal to ${formatter.format(maxValue)}`,
+					`must be less than or equal to ${formatter.format(maxValue)}`
 				);
 			}
 
 			onChange({
 				hasError: !isMinCorrect || !isMaxCorrect,
-				errorMessage: errorMessages.join(" "),
+				errorMessage: errorMessages.join(' '),
 				value: numericValue,
 			});
 		},
-		[onChange, field.conditions],
+		[onChange, field.conditions]
 	);
 
 	return (

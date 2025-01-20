@@ -1,7 +1,7 @@
-import type { FieldMetadata, InputValue, Loan } from "../../../types";
-import { getFromStorage } from "../../../utils/localStorage";
-import { deepMerge } from "../../../utils/deepMerge";
-import { useCallback, useState } from "react";
+import type { FieldMetadata, InputValue, Loan } from '../../../types';
+import { getFromStorage } from '../../../utils/localStorage';
+import { deepMerge } from '../../../utils/deepMerge';
+import { useCallback, useState } from 'react';
 
 export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
 	const loan: Loan = {};
@@ -18,7 +18,7 @@ export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
 
 export const useLoan = (fields: FieldMetadata[]) => {
 	const emptyValue = convertFieldsToEmptyLoan(fields);
-	const savedValue = getFromStorage<Loan>("loan") ?? {};
+	const savedValue = getFromStorage<Loan>('loan') ?? {};
 	// we want to merge in case any new fields have been added since the last time the user saved
 	const initialLoan = deepMerge<Loan>(savedValue, emptyValue);
 	const [loan, setLoan] = useState<Loan>(initialLoan);
@@ -26,15 +26,15 @@ export const useLoan = (fields: FieldMetadata[]) => {
 	const updateLoan = (patchRecord: Partial<Loan>): void => {
 		const newLoan = deepMerge<Loan>(patchRecord, loan);
 		// todo make prettier
-		console.log("updated in hoisted state", newLoan);
+		console.log('updated in hoisted state', newLoan);
 		setLoan(newLoan);
 	};
 
 	const getFieldValue = useCallback(
 		(field: FieldMetadata): InputValue => {
-			return loan[field.entity][field.field] ?? "";
+			return loan[field.entity][field.field] ?? '';
 		},
-		[loan],
+		[loan]
 	);
 
 	return {

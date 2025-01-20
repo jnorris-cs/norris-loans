@@ -1,6 +1,6 @@
 export const getFromStorage = <T>(
 	key: string,
-	defaultValue?: T,
+	defaultValue?: T
 ): T | undefined => {
 	const value = localStorage[key];
 

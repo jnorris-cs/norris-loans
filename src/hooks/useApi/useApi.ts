@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default <T>(
-	url: string,
+	url: string
 ): { data: T | null; isLoading: boolean; hasError: boolean } => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [hasError, setHasError] = useState(false);

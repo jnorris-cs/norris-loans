@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react";
-import type { LoanEntityMetadata } from "../../types";
-import LoanField from "../LoanField/LoanField";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { useCallback, useState } from 'react';
+import type { LoanEntityMetadata } from '../../types';
+import LoanField from '../LoanField/LoanField';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 interface LoanEntityProps {
 	entity: LoanEntityMetadata;
@@ -30,7 +30,10 @@ const LoanEntity = ({ entity }: LoanEntityProps) => {
 			<></>
 			{showFields
 				? entity.fields.map((field) => (
-						<LoanField field={field} key={field.field} />
+						<LoanField
+							field={field}
+							key={field.field}
+						/>
 					))
 				: false}
 		</fieldset>

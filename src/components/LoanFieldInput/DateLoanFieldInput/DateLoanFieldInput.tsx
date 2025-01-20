@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 
-import type { FieldMetadata } from "../../../types";
-import type { StandardInputProps } from "../types";
+import type { FieldMetadata } from '../../../types';
+import type { StandardInputProps } from '../types';
 
 type DateLoanFieldInputProps = {
 	field: FieldMetadata;
@@ -20,10 +20,16 @@ const DateLoanFieldInput = ({
 				errorMessage: undefined,
 			});
 		},
-		[onChange],
+		[onChange]
 	);
 
-	return <input type="date" onChange={onComponentChange} {...restProps} />;
+	return (
+		<input
+			type="date"
+			onChange={onComponentChange}
+			{...restProps}
+		/>
+	);
 };
 
 export default DateLoanFieldInput;

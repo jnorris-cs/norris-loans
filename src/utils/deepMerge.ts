@@ -1,6 +1,6 @@
 export const deepMerge = <T>(
 	target: Record<string, unknown>,
-	source: Record<string, unknown>,
+	source: Record<string, unknown>
 ): T => {
 	const output = { ...target };
 	for (const key in source) {
@@ -10,7 +10,7 @@ export const deepMerge = <T>(
 			}
 			deepMerge(
 				output[key] as Record<string, unknown>,
-				source[key] as Record<string, unknown>,
+				source[key] as Record<string, unknown>
 			);
 		} else {
 			output[key] = source[key];

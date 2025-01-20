@@ -1,9 +1,9 @@
-import LoanEntity from "../LoanEntity/LoanEntity";
-import type { FieldMetadata } from "../../types";
+import LoanEntity from '../LoanEntity/LoanEntity';
+import type { FieldMetadata } from '../../types';
 
-import { useLoan } from "./useLoan/useLoan";
-import { useEntities } from "./useEntities/useEntities";
-import { UpdateLoanContext } from "../../contexts/UpdateLoanContext";
+import { useLoan } from './useLoan/useLoan';
+import { useEntities } from './useEntities/useEntities';
+import { UpdateLoanContext } from '../../contexts/UpdateLoanContext';
 
 interface LoanFormProps {
 	fields: FieldMetadata[];
@@ -17,7 +17,10 @@ const LoanForm = ({ fields }: LoanFormProps) => {
 		<div className="content pt3">
 			<UpdateLoanContext.Provider value={updateLoanContext}>
 				{entities.map((entity) => (
-					<LoanEntity entity={entity} key={entity.name} />
+					<LoanEntity
+						entity={entity}
+						key={entity.name}
+					/>
 				))}
 			</UpdateLoanContext.Provider>
 		</div>

@@ -1,4 +1,4 @@
-import type { InputValue } from "../../../types";
+import type { InputValue } from '../../../types';
 
 export interface State {
 	isDirty: boolean; // has user blurred once?
@@ -13,21 +13,21 @@ export interface State {
 
 export type FieldChangeAction = Pick<
 	State,
-	"hasError" | "errorMessage" | "value"
+	'hasError' | 'errorMessage' | 'value'
 >;
 
 export type FieldAction =
-	| { type: "focus" }
+	| { type: 'focus' }
 	| {
-			type: "change";
+			type: 'change';
 			value: FieldChangeAction;
 	  }
-	| { type: "blur"; value: boolean }
-	| { type: "save-success" }
-	| { type: "clear-save-success" }
+	| { type: 'blur'; value: boolean }
+	| { type: 'save-success' }
+	| { type: 'clear-save-success' }
 	| {
-			type: "save-failure";
-			value: State["errorMessage"];
+			type: 'save-failure';
+			value: State['errorMessage'];
 	  };
 
 export const initialState: State = {
@@ -35,16 +35,16 @@ export const initialState: State = {
 	isDirty: false,
 	hasError: false,
 	isSaving: false,
-	value: "",
+	value: '',
 };
 
 export const fieldReducer = (state: State, action: FieldAction): State => {
 	switch (action.type) {
-		case "focus":
+		case 'focus':
 			return { ...state, isFocused: true };
-		case "change":
+		case 'change':
 			return { ...state, hasSaved: false, ...action.value };
-		case "blur":
+		case 'blur':
 			return {
 				...state,
 				// if value hasnt changed, go back to initial values
@@ -52,26 +52,26 @@ export const fieldReducer = (state: State, action: FieldAction): State => {
 				isFocused: false,
 				isSaving: action.value,
 			};
-		case "save-success":
+		case 'save-success':
 			return {
 				...initialState,
 				initialValue: state.value,
 				value: state.value,
 				hasSaved: true,
 			};
-		case "clear-save-success":
+		case 'clear-save-success':
 			return {
 				...state,
 				hasSaved: false,
 			};
-		case "save-failure":
+		case 'save-failure':
 			return {
 				...state,
 				isSaving: false,
 				hasError: true,
-				errorMessage: action.value ?? "save failed",
+				errorMessage: action.value ?? 'save failed',
 			};
 		default:
-			throw new Error("Unknown action");
+			throw new Error('Unknown action');
 	}
 };

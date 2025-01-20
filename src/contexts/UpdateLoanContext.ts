@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import type { FieldMetadata, InputValue, Loan } from "../types";
+import { createContext } from 'react';
+import type { FieldMetadata, InputValue, Loan } from '../types';
 
 export interface UpdateLoanContextType {
 	updateLoan: (loan: Loan) => void;
@@ -8,5 +8,5 @@ export interface UpdateLoanContextType {
 
 export const UpdateLoanContext = createContext<UpdateLoanContextType>({
 	updateLoan: () => {},
-	getFieldValue: () => "",
+	getFieldValue: () => '',
 });
