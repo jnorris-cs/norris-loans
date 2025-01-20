@@ -44,7 +44,7 @@ const updateRecord = async ({
 	try {
 		await apiPatchCall(patchRecord, value);
 		dispatch({ type: 'save-success' });
-		updateLoan(patchRecord); // update hoisted state
+		updateLoan(patchRecord); // update global state
 
 		// clear saved message after 3 seconds
 		setTimeout(() => {

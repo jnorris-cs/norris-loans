@@ -29,7 +29,7 @@ export const useLoan = (fields: FieldMetadata[]) => {
 
 	const updateLoan = (patchRecord: Partial<Loan>): void => {
 		const newLoan = deepMerge<Loan>({}, loan, patchRecord);
-		console.log('updated in hoisted state', newLoan);
+		console.log('updated in global state', newLoan);
 		setLoan(newLoan);
 		setInStorage(LOAN_STORAGE_KEY, newLoan);
 	};
