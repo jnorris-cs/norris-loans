@@ -2,12 +2,12 @@ import type { FieldMetadata } from 'types';
 
 import useApi from 'hooks/useApi/useApi';
 
-interface UseMetdataReturn {
+interface UseMetadataReturn {
 	fieldsMetadata: FieldMetadata[];
 	isLoadingMetadata: boolean;
 }
 
-export default (): UseMetdataReturn => {
+export default (): UseMetadataReturn => {
 	const { data, isLoading } = useApi<FieldMetadata[]>(
 		'/json/fieldsMetaData.json'
 	);

@@ -60,7 +60,7 @@ const LoanField = ({ field }: LoanFieldProps) => {
 			type: 'change',
 			value: payload,
 		});
-	const onBlur = useCallback(() => dispatch({ type: 'blur'}), [dispatch]);
+	const onBlur = useCallback(() => dispatch({ type: 'blur' }), [dispatch]);
 
 	return (
 		<div className={classNames}>

@@ -6,7 +6,7 @@ import LoanField from './LoanField';
 
 const stringField =
 	fields.find((field) => field.type === 'string') ?? fields[0];
-	
+
 describe('LoanField', () => {
 	it('shows red error message after blur', async () => {
 		render(<LoanField field={stringField} />);

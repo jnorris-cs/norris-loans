@@ -1,7 +1,7 @@
 import type { InputValue } from 'types';
 
 export type FieldAction =
-	| { type: 'blur'; }
+	| { type: 'blur' }
 	| {
 			type: 'change';
 			value: FieldChangeAction;
@@ -40,7 +40,7 @@ export const initialState: State = {
 
 export const fieldReducer = (state: State, action: FieldAction): State => {
 	switch (action.type) {
-		case 'blur':
+		case 'blur': {
 			const valueChanged = state.value !== state.initialValue;
 
 			return {
@@ -50,6 +50,7 @@ export const fieldReducer = (state: State, action: FieldAction): State => {
 				isFocused: false,
 				isSaving: !state.hasError && valueChanged,
 			};
+		}
 		case 'change':
 			return { ...state, hasSaved: false, ...action.value };
 		case 'clear-save-success':
