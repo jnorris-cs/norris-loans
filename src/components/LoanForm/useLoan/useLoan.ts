@@ -6,13 +6,26 @@ import { getFromStorage, setInStorage } from 'utils/localStorage';
 
 const LOAN_STORAGE_KEY = 'loan';
 
-export const useLoan = () => {
+export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
+	const loan: Loan = {};
+
+	fields.forEach((field) => {
+		if (!loan[field.entity]) {
+			loan[field.entity] = {};
+		}
+	});
+
+	return loan;
+};
+
+export const useLoan = (fields: FieldMetadata[]) => {
+	const emptyValue = convertFieldsToEmptyLoan(fields);
 	const savedValue = getFromStorage<Loan>(LOAN_STORAGE_KEY) ?? {};
 	// we want to merge in case any new fields have been added since the last time the user saved
-	const initialLoan = deepMerge<Loan>({}, savedValue);
+	const initialLoan = deepMerge<Loan>({}, emptyValue, savedValue);
 	const [loan, setLoan] = useState<Loan>(initialLoan);
 
-	const updateLoan = (patchRecord: Partial<Loan>): void => {
+	const setFieldValue = (patchRecord: Partial<Loan>): void => {
 		const newLoan = deepMerge<Loan>({}, loan, patchRecord);
 		console.log('updated in global state', newLoan);
 		setLoan(newLoan);
@@ -32,6 +45,6 @@ export const useLoan = () => {
 
 	return {
 		getFieldValue,
-		updateLoan,
+		setFieldValue,
 	};
 };

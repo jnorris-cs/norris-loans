@@ -4,10 +4,10 @@ import { createContext } from 'react';
 
 export interface UpdateLoanContextType {
 	getFieldValue: (field: FieldMetadata) => InputValue;
-	updateLoan: (loan: Loan) => void;
+	setFieldValue: (loan: Loan) => void;
 }
 
 export const UpdateLoanContext = createContext<UpdateLoanContextType>({
 	getFieldValue: () => '',
-	updateLoan: () => {},
+	setFieldValue: () => {},
 });

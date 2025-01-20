@@ -20,7 +20,7 @@ interface LoanFieldProps {
 
 const LoanField = ({ field }: LoanFieldProps) => {
 	// field state and logic
-	const { getFieldValue, updateLoan } = useContext(UpdateLoanContext);
+	const { getFieldValue, setFieldValue } = useContext(UpdateLoanContext);
 	const value = getFieldValue(field);
 	const [state, dispatch] = useReducer(fieldReducer, {
 		...initialState,
@@ -32,7 +32,7 @@ const LoanField = ({ field }: LoanFieldProps) => {
 		dispatch,
 		field,
 		isSaving: state.isSaving,
-		updateLoan,
+		setFieldValue,
 		value: state.value,
 	});
 
@@ -60,10 +60,7 @@ const LoanField = ({ field }: LoanFieldProps) => {
 			type: 'change',
 			value: payload,
 		});
-	const onBlur = useCallback(() => {
-		const canSave = !state.hasError && state.value !== state.initialValue;
-		dispatch({ type: 'blur', value: canSave });
-	}, [dispatch, state.hasError, state.value, state.initialValue]);
+	const onBlur = useCallback(() => dispatch({ type: 'blur'}), [dispatch]);
 
 	return (
 		<div className={classNames}>

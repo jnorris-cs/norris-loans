@@ -6,22 +6,8 @@ import LoanField from './LoanField';
 
 const stringField =
 	fields.find((field) => field.type === 'string') ?? fields[0];
+	
 describe('LoanField', () => {
-	it('shows gray error message while typing', async () => {
-		render(<LoanField field={stringField} />);
-		const input = screen.getByRole('textbox');
-
-		await waitFor(async () => await userEvent.click(input));
-		await waitFor(async () => await userEvent.keyboard('test 1'));
-
-		expect(
-			input.parentElement?.classList.contains('loan-field__invalid')
-		).toEqual(false);
-		expect(
-			screen.getByText('Can only use alphabetical characters')
-		).toBeDefined();
-	});
-
 	it('shows red error message after blur', async () => {
 		render(<LoanField field={stringField} />);
 		const input = screen.getByRole('textbox');

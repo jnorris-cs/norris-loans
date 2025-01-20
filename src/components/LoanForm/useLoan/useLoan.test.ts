@@ -10,13 +10,13 @@ jest.useFakeTimers();
 
 describe('useLoan', () => {
 	it('should handle multiple update calls at the same time', () => {
-		const { result } = renderHook(() => useLoan());
+		const { result } = renderHook(() => useLoan(fields));
 
-		const { getFieldValue, updateLoan } = result.current;
+		const { getFieldValue, setFieldValue } = result.current;
 
 		act(() => {
-			updateLoan({ [fields1.entity]: { [fields1.field]: 'test 1' } });
-			updateLoan({ [fields2.entity]: { [fields2.field]: 'test 2' } });
+			setFieldValue({ [fields1.entity]: { [fields1.field]: 'test 1' } });
+			setFieldValue({ [fields2.entity]: { [fields2.field]: 'test 2' } });
 
 			jest.runAllTimers();
 		});

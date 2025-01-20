@@ -11,7 +11,7 @@ interface SaveFieldProps {
 	dispatch: Dispatch<FieldAction>;
 	field: FieldMetadata;
 	isSaving: boolean;
-	updateLoan: UpdateLoanContextType['updateLoan'];
+	setFieldValue: UpdateLoanContextType['setFieldValue'];
 	value: InputValue;
 }
 
@@ -32,7 +32,7 @@ const apiPatchCall = async (patchRecord: Partial<Loan>, value: InputValue) => {
 const updateRecord = async ({
 	dispatch,
 	field,
-	updateLoan,
+	setFieldValue,
 	value,
 }: Omit<SaveFieldProps, 'isSaving'>) => {
 	const patchRecord = {
@@ -44,14 +44,14 @@ const updateRecord = async ({
 	try {
 		await apiPatchCall(patchRecord, value);
 		dispatch({ type: 'save-success' });
-		updateLoan(patchRecord); // update global state
+		setFieldValue(patchRecord); // update global state
 
 		// clear saved message after 3 seconds
 		setTimeout(() => {
 			dispatch({ type: 'clear-save-success' });
 		}, 3000);
 	} catch (error: unknown) {
-		const errorMessage: string = extractErrorMessage(error);
+		const errorMessage = extractErrorMessage(error);
 		dispatch({ type: 'save-failure', value: errorMessage });
 	}
 };
@@ -60,7 +60,7 @@ export const useSaveField = ({
 	dispatch,
 	field,
 	isSaving,
-	updateLoan,
+	setFieldValue,
 	value,
 }: SaveFieldProps) => {
 	useEffect(() => {
@@ -68,6 +68,6 @@ export const useSaveField = ({
 			return;
 		}
 
-		updateRecord({ dispatch, field, updateLoan, value });
-	}, [dispatch, isSaving, field, value, updateLoan]);
+		updateRecord({ dispatch, field, setFieldValue, value });
+	}, [dispatch, isSaving, field, value, setFieldValue]);
 };
