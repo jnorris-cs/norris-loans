@@ -8,9 +8,11 @@
 ## Other important commands
 
 | Command | Description |
+| ------------- | ------------- |
 | `yarn clean` | runs eslint and prettier |
 | `yarn typecheck` | checks types |
-| `yarn test` | runs tests `|`yarn test:update`| runs tests and updates snapshots`
+| `yarn test` | runs tests ` |
+| `yarn test:update` | runs tests and updates snapshots` |
 
 ## Points of interests
 
