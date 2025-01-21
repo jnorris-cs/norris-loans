@@ -18,12 +18,12 @@
 
 The two places that data is stored are:
 
-### Loan Form
+### [LoanForm](https://github.com/jnorris-cs/norris-loans/tree/main/src/components/LoanForm)
 
 - This component keeps the whole form object in global state.
 - It uses react context to pass getters and setters to individual fields.
 
-### Loan Field
+### [LoanField](https://github.com/jnorris-cs/norris-loans/tree/main/src/components/LoanField)
 
 - This keeps the state for each individual fields
 - It keeps the form state: focus, validation results, etc.
