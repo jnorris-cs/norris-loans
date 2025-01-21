@@ -5,86 +5,86 @@ import { UpdateLoanContext } from 'contexts/UpdateLoanContext';
 import { useCallback, useContext, useMemo, useReducer } from 'react';
 
 import {
-	FieldChangeAction,
-	fieldReducer,
-	initialState,
+  FieldChangeAction,
+  fieldReducer,
+  initialState,
 } from './FieldReducer/FieldReducer';
 import LoanFieldIcon from './LoanFieldIcon/LoanFieldIcon';
 import { useSaveField } from './useSaveField/useSaveField';
 import './LoanField.scss';
 
 interface LoanFieldProps {
-	field: FieldMetadata;
-	value?: InputValue;
+  field: FieldMetadata;
+  value?: InputValue;
 }
 
 const LoanField = ({ field }: LoanFieldProps) => {
-	// field state and logic
-	const { getFieldValue, setFieldValue } = useContext(UpdateLoanContext);
-	const value = getFieldValue(field);
-	const [state, dispatch] = useReducer(fieldReducer, {
-		...initialState,
-		initialValue: value,
-		value: value,
-	});
+  // field state and logic
+  const { getFieldValue, setFieldValue } = useContext(UpdateLoanContext);
+  const value = getFieldValue(field);
+  const [state, dispatch] = useReducer(fieldReducer, {
+    ...initialState,
+    initialValue: value,
+    value: value,
+  });
 
-	useSaveField({
-		dispatch,
-		field,
-		isSaving: state.isSaving,
-		setFieldValue,
-		value: state.value,
-	});
+  useSaveField({
+    dispatch,
+    field,
+    isSaving: state.isSaving,
+    setFieldValue,
+    value: state.value,
+  });
 
-	// html values
-	const id = useMemo(
-		() => `${field.entity}.${field.field}`,
-		[field.entity, field.field]
-	);
-	const classNames = useMemo<string>(() => {
-		const classes = ['mb3', 'loan-field'];
+  // html values
+  const id = useMemo(
+    () => `${field.entity}.${field.field}`,
+    [field.entity, field.field]
+  );
+  const classNames = useMemo<string>(() => {
+    const classes = ['mb3', 'loan-field'];
 
-		if (state.hasError && state.isDirty) {
-			classes.push('loan-field__invalid');
-		} else if (!state.hasError) {
-			classes.push('loan-field__valid');
-		}
+    if (state.hasError && state.isDirty) {
+      classes.push('loan-field__invalid');
+    } else if (!state.hasError) {
+      classes.push('loan-field__valid');
+    }
 
-		return classes.join(' ');
-	}, [state.isDirty, state.hasError]);
+    return classes.join(' ');
+  }, [state.isDirty, state.hasError]);
 
-	// input events handlers
-	const onFocus = () => dispatch({ type: 'focus' });
-	const onChange = (payload: FieldChangeAction) =>
-		dispatch({
-			type: 'change',
-			value: payload,
-		});
-	const onBlur = useCallback(() => dispatch({ type: 'blur' }), [dispatch]);
+  // input events handlers
+  const onFocus = () => dispatch({ type: 'focus' });
+  const onChange = (payload: FieldChangeAction) =>
+    dispatch({
+      type: 'change',
+      value: payload,
+    });
+  const onBlur = useCallback(() => dispatch({ type: 'blur' }), [dispatch]);
 
-	return (
-		<div className={classNames}>
-			<label
-				className="db mb1"
-				htmlFor={id}
-			>
-				{field.display}
-			</label>
-			<LoanFieldInput
-				field={field}
-				id={id}
-				name={id}
-				onBlur={onBlur}
-				onChange={onChange}
-				onFocus={onFocus}
-				value={state.value}
-			/>
-			<LoanFieldIcon {...state} />
-			{state.errorMessage && state.isDirty && (
-				<div className="loan-field-error-message">{state.errorMessage}</div>
-			)}
-		</div>
-	);
+  return (
+    <div className={classNames}>
+      <label
+        className="db mb1"
+        htmlFor={id}
+      >
+        {field.display}
+      </label>
+      <LoanFieldInput
+        field={field}
+        id={id}
+        name={id}
+        onBlur={onBlur}
+        onChange={onChange}
+        onFocus={onFocus}
+        value={state.value}
+      />
+      <LoanFieldIcon {...state} />
+      {state.errorMessage && state.isDirty && (
+        <div className="loan-field-error-message">{state.errorMessage}</div>
+      )}
+    </div>
+  );
 };
 
 export default LoanField;

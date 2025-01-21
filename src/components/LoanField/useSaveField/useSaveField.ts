@@ -8,66 +8,66 @@ import { extractErrorMessage } from 'utils/api';
 import { FieldAction } from '../FieldReducer/FieldReducer';
 
 interface SaveFieldProps {
-	dispatch: Dispatch<FieldAction>;
-	field: FieldMetadata;
-	isSaving: boolean;
-	setFieldValue: UpdateLoanContextType['setFieldValue'];
-	value: InputValue;
+  dispatch: Dispatch<FieldAction>;
+  field: FieldMetadata;
+  isSaving: boolean;
+  setFieldValue: UpdateLoanContextType['setFieldValue'];
+  value: InputValue;
 }
 
 // this part is obvious not production code :grimmacing:
 const sleep = (ms: number) => {
-	return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 };
 const apiPatchCall = async (patchRecord: Partial<Loan>, value: InputValue) => {
-	console.log('patch api call with this payload', patchRecord);
-	await sleep(2000); // 2 seconds to simulate patch
+  console.log('patch api call with this payload', patchRecord);
+  await sleep(2000); // 2 seconds to simulate patch
 
-	// test api failures with "bad" or a number that includes "99"
-	if (value === 'bad' || value.toString().includes('99')) {
-		throw new Error('Save failed');
-	}
+  // test api failures with "bad" or a number that includes "99"
+  if (value === 'bad' || value.toString().includes('99')) {
+    throw new Error('Save failed');
+  }
 };
 
 const updateRecord = async ({
-	dispatch,
-	field,
-	setFieldValue,
-	value,
+  dispatch,
+  field,
+  setFieldValue,
+  value,
 }: Omit<SaveFieldProps, 'isSaving'>) => {
-	const patchRecord = {
-		[field.entity]: {
-			[field.field]: value,
-		},
-	};
+  const patchRecord = {
+    [field.entity]: {
+      [field.field]: value,
+    },
+  };
 
-	try {
-		await apiPatchCall(patchRecord, value);
-		dispatch({ type: 'save-success' });
-		setFieldValue(patchRecord); // update global state
+  try {
+    await apiPatchCall(patchRecord, value);
+    dispatch({ type: 'save-success' });
+    setFieldValue(patchRecord); // update global state
 
-		// clear saved message after 3 seconds
-		setTimeout(() => {
-			dispatch({ type: 'clear-save-success' });
-		}, 3000);
-	} catch (error: unknown) {
-		const errorMessage = extractErrorMessage(error);
-		dispatch({ type: 'save-failure', value: errorMessage });
-	}
+    // clear saved message after 3 seconds
+    setTimeout(() => {
+      dispatch({ type: 'clear-save-success' });
+    }, 3000);
+  } catch (error: unknown) {
+    const errorMessage = extractErrorMessage(error);
+    dispatch({ type: 'save-failure', value: errorMessage });
+  }
 };
 
 export const useSaveField = ({
-	dispatch,
-	field,
-	isSaving,
-	setFieldValue,
-	value,
+  dispatch,
+  field,
+  isSaving,
+  setFieldValue,
+  value,
 }: SaveFieldProps) => {
-	useEffect(() => {
-		if (!isSaving) {
-			return;
-		}
+  useEffect(() => {
+    if (!isSaving) {
+      return;
+    }
 
-		updateRecord({ dispatch, field, setFieldValue, value });
-	}, [dispatch, isSaving, field, value, setFieldValue]);
+    updateRecord({ dispatch, field, setFieldValue, value });
+  }, [dispatch, isSaving, field, value, setFieldValue]);
 };

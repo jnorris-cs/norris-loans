@@ -1,34 +1,34 @@
 .loan-field {
-	--invalid: #e7040f;
+  --invalid: #e7040f;
 
-	position: relative;
+  position: relative;
 
-	input {
-		width: 200px;
-	}
+  input {
+    width: 200px;
+  }
 
-	.loan-field-error-message {
-		position: absolute;
-		font-size: 11px;
-	}
+  .loan-field-error-message {
+    position: absolute;
+    font-size: 11px;
+  }
 
-	.light-gray {
-		color: #bbb;
-	}
+  .light-gray {
+    color: #bbb;
+  }
 }
 
 .loan-field.loan-field__invalid {
-	input {
-		border-color: var(--invalid);
-	}
+  input {
+    border-color: var(--invalid);
+  }
 
-	.loan-field-error-message {
-		color: var(--invalid);
-	}
+  .loan-field-error-message {
+    color: var(--invalid);
+  }
 }
 
 .loan-field.loan-field__focused {
-	.loan-field-error-message {
-		color: #777;
-	}
+  .loan-field-error-message {
+    color: #777;
+  }
 }

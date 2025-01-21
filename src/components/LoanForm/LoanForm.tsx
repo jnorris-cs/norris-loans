@@ -7,29 +7,29 @@ import { useGroupFieldsByEntity } from './useGroupFieldsByEntity/useGroupFieldsB
 import { useLoan } from './useLoan/useLoan';
 
 interface LoanFormProps {
-	fields: FieldMetadata[];
+  fields: FieldMetadata[];
 }
 
 const LoanForm = ({ fields }: LoanFormProps) => {
-	const entities = useGroupFieldsByEntity(fields); // convert flat fields into entity objects
-	const updateLoanContext = useLoan(fields);
+  const entities = useGroupFieldsByEntity(fields); // convert flat fields into entity objects
+  const updateLoanContext = useLoan(fields);
 
-	return (
-		<form
-			action="#"
-			autoComplete="off"
-			className="content pt3"
-		>
-			<UpdateLoanContext.Provider value={updateLoanContext}>
-				{entities.map((entity) => (
-					<LoanEntity
-						entity={entity}
-						key={entity.name}
-					/>
-				))}
-			</UpdateLoanContext.Provider>
-		</form>
-	);
+  return (
+    <form
+      action="#"
+      autoComplete="off"
+      className="content pt3"
+    >
+      <UpdateLoanContext.Provider value={updateLoanContext}>
+        {entities.map((entity) => (
+          <LoanEntity
+            entity={entity}
+            key={entity.name}
+          />
+        ))}
+      </UpdateLoanContext.Provider>
+    </form>
+  );
 };
 
 export default LoanForm;

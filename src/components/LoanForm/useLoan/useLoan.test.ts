@@ -9,19 +9,19 @@ const fields2 = fields[1];
 jest.useFakeTimers();
 
 describe('useLoan', () => {
-	it('should handle multiple update calls at the same time', () => {
-		const { result } = renderHook(() => useLoan(fields));
+  it('should handle multiple update calls at the same time', () => {
+    const { result } = renderHook(() => useLoan(fields));
 
-		const { getFieldValue, setFieldValue } = result.current;
+    const { getFieldValue, setFieldValue } = result.current;
 
-		act(() => {
-			setFieldValue({ [fields1.entity]: { [fields1.field]: 'test 1' } });
-			setFieldValue({ [fields2.entity]: { [fields2.field]: 'test 2' } });
+    act(() => {
+      setFieldValue({ [fields1.entity]: { [fields1.field]: 'test 1' } });
+      setFieldValue({ [fields2.entity]: { [fields2.field]: 'test 2' } });
 
-			jest.runAllTimers();
-		});
+      jest.runAllTimers();
+    });
 
-		expect(getFieldValue(fields1)).toBe('test 1');
-		expect(getFieldValue(fields2)).toBe('test 2');
-	});
+    expect(getFieldValue(fields1)).toBe('test 1');
+    expect(getFieldValue(fields2)).toBe('test 2');
+  });
 });

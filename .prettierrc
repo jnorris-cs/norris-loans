@@ -1,9 +1,10 @@
 {
-	"useTabs": true,
-	"singleQuote": true,
-	"arrowParens": "always",
-	"htmlWhitespaceSensitivity": "ignore",
-	"singleAttributePerLine": true,
-	"trailingComma": "es5",
-	"semi": true
+  "useTabs": false,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "arrowParens": "always",
+  "htmlWhitespaceSensitivity": "ignore",
+  "singleAttributePerLine": true,
+  "trailingComma": "es5",
+  "semi": true
 }
