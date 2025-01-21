@@ -3,7 +3,7 @@
 ## Getting Started
 
 1. Install the dependencies: `yarn install`
-2. start rsbuild dev server: `yarn start`
+2. start rspack dev server: `yarn start`
 
 ## Other important commands
 
