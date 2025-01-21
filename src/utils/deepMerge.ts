@@ -4,6 +4,7 @@ export function deepMerge<T extends Record<string, unknown>>(
 ): T {
   if (!sources.length) return target as T;
   const source = sources.shift();
+  target = { ...target };
 
   if (isObject(target) && isObject(source)) {
     for (const key in source) {

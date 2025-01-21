@@ -31,7 +31,7 @@ const LoanField = ({ field }: LoanFieldProps) => {
   useSaveField({
     dispatch,
     field,
-    isSaving: state.isSaving,
+    saveState: state.saveState,
     setFieldValue,
     value: state.value,
   });

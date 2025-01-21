@@ -15,11 +15,10 @@ type LoanFieldIconProps = Omit<
 const LoanFieldIcon = ({
   errorMessage,
   hasError,
-  hasSaved,
   isDirty,
-  isSaving,
+  saveState,
 }: LoanFieldIconProps) => {
-  if (isSaving) {
+  if (saveState === 'saving') {
     return (
       <FontAwesomeIcon
         className=" ml2 fa-spin light-gray"
@@ -29,7 +28,7 @@ const LoanFieldIcon = ({
     );
   }
 
-  if (hasSaved) {
+  if (saveState === 'saved') {
     return (
       <FontAwesomeIcon
         className=" ml2 light-gray"

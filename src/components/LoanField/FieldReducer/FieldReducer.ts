@@ -12,7 +12,8 @@ export type FieldAction =
       type: 'save-failure';
       value: FieldReducerState['errorMessage'];
     }
-  | { type: 'save-success' };
+  | { type: 'save-success' }
+  | { type: 'start-save' };
 
 export type FieldChangeAction = Pick<
   FieldReducerState,
@@ -22,11 +23,10 @@ export type FieldChangeAction = Pick<
 export interface FieldReducerState {
   errorMessage?: string;
   hasError: boolean;
-  hasSaved?: boolean;
   initialValue?: InputValue;
   isDirty: boolean; // has user blurred once?
   isFocused: boolean;
-  isSaving: boolean;
+  saveState?: 'not ready' | 'ready' | 'saved' | 'saving';
   value: InputValue;
 }
 
@@ -34,7 +34,6 @@ export const initialState: FieldReducerState = {
   hasError: false,
   isDirty: false,
   isFocused: false,
-  isSaving: false,
   value: '',
 };
 
@@ -50,15 +49,15 @@ export const fieldReducer = (
         ...state,
         isDirty: valueChanged,
         isFocused: false,
-        isSaving: !state.hasError && valueChanged,
+        saveState: !state.hasError && valueChanged ? 'ready' : undefined,
       };
     }
     case 'change':
-      return { ...state, hasSaved: false, ...action.value };
+      return { ...state, saveState: 'not ready', ...action.value };
     case 'clear-save-success':
       return {
         ...state,
-        hasSaved: false,
+        saveState: 'not ready',
       };
     case 'focus':
       return { ...state, isFocused: true };
@@ -67,15 +66,17 @@ export const fieldReducer = (
         ...state,
         errorMessage: action.value ?? 'save failed',
         hasError: true,
-        isSaving: false,
+        saveState: 'not ready',
       };
     case 'save-success':
       return {
         ...initialState,
-        hasSaved: true,
         initialValue: state.value,
+        saveState: 'saved',
         value: state.value,
       };
+    case 'start-save':
+      return { ...state, saveState: 'saving' };
     default:
       throw new Error('Unknown action');
   }

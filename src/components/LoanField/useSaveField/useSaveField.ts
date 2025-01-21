@@ -5,12 +5,12 @@ import type { FieldMetadata, InputValue, Loan } from 'types';
 import { useEffect } from 'react';
 import { extractErrorMessage } from 'utils/api';
 
-import { FieldAction } from '../FieldReducer/FieldReducer';
+import { FieldAction, FieldReducerState } from '../FieldReducer/FieldReducer';
 
 interface SaveFieldProps {
   dispatch: Dispatch<FieldAction>;
   field: FieldMetadata;
-  isSaving: boolean;
+  saveState: FieldReducerState['saveState'];
   setFieldValue: UpdateLoanContextType['setFieldValue'];
   value: InputValue;
 }
@@ -34,7 +34,7 @@ const updateRecord = async ({
   field,
   setFieldValue,
   value,
-}: Omit<SaveFieldProps, 'isSaving'>) => {
+}: Omit<SaveFieldProps, 'saveState'>) => {
   const patchRecord = {
     [field.entity]: {
       [field.field]: value,
@@ -59,15 +59,15 @@ const updateRecord = async ({
 export const useSaveField = ({
   dispatch,
   field,
-  isSaving,
+  saveState,
   setFieldValue,
   value,
 }: SaveFieldProps) => {
   useEffect(() => {
-    if (!isSaving) {
+    if (saveState !== 'ready') {
       return;
     }
-
+    dispatch({ type: 'start-save' });
     updateRecord({ dispatch, field, setFieldValue, value });
-  }, [dispatch, isSaving, field, value, setFieldValue]);
+  }, [dispatch, saveState, field, value, setFieldValue]);
 };

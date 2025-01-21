@@ -32,9 +32,9 @@ Business logic is consolidated into two places.
 
 ## Notable External Libraries
 
-| Library                          | Description |
-| -------------------------------- | ----------- |
-| [Tachyons](https://tachyons.io/) | css library |
+| Library                          | Description             |
+| -------------------------------- | ----------------------- |
+| [Tachyons](https://tachyons.io/) | lightweight css library |
 
 ## Component Hierarchy
 
