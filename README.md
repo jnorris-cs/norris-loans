@@ -14,7 +14,7 @@
 | `yarn test`        | runs tests                       |
 | `yarn test:update` | runs tests and updates snapshots |
 
-## testing
+## Testing
 
 enter `bad` into string fields or a number containing `99` in money fields to simulate an api error.
 
