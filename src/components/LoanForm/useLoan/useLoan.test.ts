@@ -12,7 +12,7 @@ describe('useLoan', () => {
   it('should handle multiple update calls at the same time', () => {
     const { result } = renderHook(() => useLoan(fields));
 
-    const { getFieldValue, setFieldValue } = result.current;
+    const { setFieldValue } = result.current;
 
     act(() => {
       setFieldValue({ [fields1.entity]: { [fields1.field]: 'test 1' } });
@@ -20,6 +20,8 @@ describe('useLoan', () => {
 
       jest.runAllTimers();
     });
+
+    const { getFieldValue } = result.current;
 
     expect(getFieldValue(fields1)).toBe('test 1');
     expect(getFieldValue(fields2)).toBe('test 2');

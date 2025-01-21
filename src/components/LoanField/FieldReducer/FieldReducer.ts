@@ -76,7 +76,7 @@ export const fieldReducer = (
         value: state.value,
       };
     case 'start-save':
-      return { ...state, saveState: 'saving' };
+      return { ...state, initialValue: state.value, saveState: 'saving' };
     default:
       throw new Error('Unknown action');
   }

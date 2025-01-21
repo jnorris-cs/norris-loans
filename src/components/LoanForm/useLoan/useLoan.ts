@@ -1,12 +1,13 @@
 import type { FieldMetadata, InputValue, Loan } from 'types';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import { deepMerge } from 'utils/deepMerge';
 import { getFromStorage, setInStorage } from 'utils/localStorage';
 
+import { loanReducer } from '../LoanReducer/LoanReducer';
 const LOAN_STORAGE_KEY = 'loan';
 
-export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
+const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
   return fields.reduce<Loan>((acc, field) => {
     if (!acc[field.entity]) {
       acc[field.entity] = {};
@@ -17,18 +18,26 @@ export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
 };
 
 export const useLoan = (fields: FieldMetadata[]) => {
-  const emptyValue = convertFieldsToEmptyLoan(fields);
-  const savedValue = getFromStorage<Loan>(LOAN_STORAGE_KEY) ?? {};
-  // we want to merge in case any new entity types have been added since the last time the user saved
-  const initialLoan = deepMerge<Loan>({}, emptyValue, savedValue);
-  const [loan, setLoan] = useState<Loan>(initialLoan);
+  const initialLoan = useMemo(() => {
+    const emptyValue = convertFieldsToEmptyLoan(fields);
+    const savedValue = getFromStorage<Loan>(LOAN_STORAGE_KEY) ?? {};
+    // we want to merge in case any new entity types have been added since the last time the user saved
+    return deepMerge<Loan>({}, emptyValue, savedValue);
+  }, [fields]);
+  const [{ loan }, dispatch] = useReducer(loanReducer, { loan: initialLoan });
 
-  const setFieldValue = (patchRecord: Partial<Loan>): void => {
-    const newLoan = deepMerge<Loan>({}, loan, patchRecord);
-    console.log('updated in global state', newLoan);
-    setLoan(newLoan);
-    setInStorage(LOAN_STORAGE_KEY, newLoan);
-  };
+  const setFieldValue = useCallback((patchRecord: Partial<Loan>) => {
+    dispatch({ type: 'patch', value: patchRecord });
+  }, []);
+
+  useEffect(() => {
+    if (loan === initialLoan) {
+      return;
+    }
+
+    console.log('loan in global state', loan);
+    setInStorage(LOAN_STORAGE_KEY, loan);
+  }, [loan, initialLoan]);
 
   const getFieldValue = useCallback(
     (field: FieldMetadata): InputValue => {
