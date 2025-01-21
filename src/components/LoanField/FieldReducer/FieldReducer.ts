@@ -10,16 +10,16 @@ export type FieldAction =
   | { type: 'focus' }
   | {
       type: 'save-failure';
-      value: State['errorMessage'];
+      value: FieldReducerState['errorMessage'];
     }
   | { type: 'save-success' };
 
 export type FieldChangeAction = Pick<
-  State,
+  FieldReducerState,
   'errorMessage' | 'hasError' | 'value'
 >;
 
-export interface State {
+export interface FieldReducerState {
   errorMessage?: string;
   hasError: boolean;
   hasSaved?: boolean;
@@ -30,7 +30,7 @@ export interface State {
   value: InputValue;
 }
 
-export const initialState: State = {
+export const initialState: FieldReducerState = {
   hasError: false,
   isDirty: false,
   isFocused: false,
@@ -38,14 +38,16 @@ export const initialState: State = {
   value: '',
 };
 
-export const fieldReducer = (state: State, action: FieldAction): State => {
+export const fieldReducer = (
+  state: FieldReducerState,
+  action: FieldAction
+): FieldReducerState => {
   switch (action.type) {
     case 'blur': {
       const valueChanged = state.value !== state.initialValue;
 
       return {
         ...state,
-        // if value hasn't changed, go back to initial values
         isDirty: valueChanged,
         isFocused: false,
         isSaving: !state.hasError && valueChanged,

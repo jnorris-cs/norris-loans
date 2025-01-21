@@ -5,9 +5,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { State } from '../FieldReducer/FieldReducer';
+import type { FieldReducerState } from '../FieldReducer/FieldReducer';
 
-type LoanFieldIconProps = Omit<State, 'initialValue' | 'isFocused' | 'value'>;
+type LoanFieldIconProps = Omit<
+  FieldReducerState,
+  'initialValue' | 'isFocused' | 'value'
+>;
 
 const LoanFieldIcon = ({
   errorMessage,

@@ -1,5 +1,6 @@
 import type { FieldMetadata, InputValue } from 'types';
 
+// each input type has its own props.
 import type {
   DateLoanFieldInputProps,
   MoneyLoanFieldInputProps,
@@ -11,6 +12,7 @@ import DateLoanFieldInput from './DateLoanFieldInput/DateLoanFieldInput';
 import MoneyLoanFieldInput from './MoneyLoanFieldInput/MoneyLoanFieldInput';
 import StringLoanFieldInput from './StringLoanFieldInput/StringLoanFieldInput';
 
+// we can use `in` type guards to determine the type of the input field props
 const isStringField = (
   props: StandardInputProps
 ): props is StringLoanFieldInputProps => {
@@ -44,7 +46,7 @@ const LoanFieldInput = (props: LoanFieldInputProps) => {
   if (isDateField(props)) {
     return <DateLoanFieldInput {...props} />;
   }
-
+  // add new input types here
   return false;
 };
 

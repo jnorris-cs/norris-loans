@@ -2,7 +2,7 @@ import type { FieldMetadata, InputValue } from 'types';
 
 import LoanFieldInput from 'components/LoanFieldInput/LoanFieldInput';
 import { UpdateLoanContext } from 'contexts/UpdateLoanContext';
-import { useCallback, useContext, useMemo, useReducer } from 'react';
+import { useContext, useMemo, useReducer } from 'react';
 
 import {
   FieldChangeAction,
@@ -41,16 +41,16 @@ const LoanField = ({ field }: LoanFieldProps) => {
     () => `${field.entity}.${field.field}`,
     [field.entity, field.field]
   );
-  const classNames = useMemo<string>(() => {
-    const classes = ['mb3', 'loan-field'];
+  const containerClassName = useMemo<string>(() => {
+    const classNames = ['mb3', 'loan-field'];
 
     if (state.hasError && state.isDirty) {
-      classes.push('loan-field__invalid');
+      classNames.push('loan-field__invalid');
     } else if (!state.hasError) {
-      classes.push('loan-field__valid');
+      classNames.push('loan-field__valid');
     }
 
-    return classes.join(' ');
+    return classNames.join(' ');
   }, [state.isDirty, state.hasError]);
 
   // input events handlers
@@ -60,10 +60,10 @@ const LoanField = ({ field }: LoanFieldProps) => {
       type: 'change',
       value: payload,
     });
-  const onBlur = useCallback(() => dispatch({ type: 'blur' }), [dispatch]);
+  const onBlur = () => dispatch({ type: 'blur' });
 
   return (
-    <div className={classNames}>
+    <div className={containerClassName}>
       <label
         className="db mb1"
         htmlFor={id}

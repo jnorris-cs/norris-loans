@@ -1,3 +1,4 @@
+import type { FieldReducerState } from 'components/LoanField/FieldReducer/FieldReducer';
 import type { InputValue } from 'types';
 
 export type DateLoanFieldInputProps = {
@@ -7,7 +8,7 @@ export type DateLoanFieldInputProps = {
 
 export type FieldChangeAction = {
   value: InputValue;
-} & Pick<State, 'errorMessage' | 'hasError'>;
+} & Pick<FieldReducerState, 'errorMessage' | 'hasError'>;
 
 export type MoneyLoanFieldInputProps = {
   field: MoneyFieldMetadata;

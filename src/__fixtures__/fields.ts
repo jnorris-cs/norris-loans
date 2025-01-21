@@ -1,4 +1,4 @@
-import type { FieldMetadata } from '../types';
+import type { FieldMetadata } from 'types';
 
 import fields from '../../public/json/fieldsMetaData.json';
 

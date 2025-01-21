@@ -7,16 +7,16 @@
 
 ## Other important commands
 
-| Command | Description |
-| ------------- | ------------- |
-| `yarn clean` | runs eslint and prettier |
-| `yarn typecheck` | checks types |
-| `yarn test` | runs tests |
+| Command            | Description                      |
+| ------------------ | -------------------------------- |
+| `yarn clean`       | runs eslint and prettier         |
+| `yarn typecheck`   | checks types                     |
+| `yarn test`        | runs tests                       |
 | `yarn test:update` | runs tests and updates snapshots |
 
 ## Points of interests
 
-The two places that data is stored are:
+Business logic is consolidated into two places.
 
 ### [LoanForm](https://github.com/jnorris-cs/norris-loans/tree/main/src/components/LoanForm)
 
@@ -29,6 +29,12 @@ The two places that data is stored are:
 - It keeps the form state: focus, validation results, etc.
 - It handles updating the pretend external api and displaying saving indicators
 - It updates global state via the context getters and setters.
+
+## Notable External Libraries
+
+| Library                          | Description |
+| -------------------------------- | ----------- |
+| [Tachyons](https://tachyons.io/) | css library |
 
 ## Component Hierarchy
 

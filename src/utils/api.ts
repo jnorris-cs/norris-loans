@@ -1,10 +1,21 @@
+const FALLBACK_ERROR_MESSAGE = 'Save Failed';
+
 export const extractErrorMessage = (error: unknown): string => {
-  return typeof error === 'object' &&
-    error &&
+  if (!error) {
+    return FALLBACK_ERROR_MESSAGE;
+  }
+
+  if (
+    typeof error === 'object' &&
     'message' in error &&
     typeof error.message === 'string'
-    ? error.message
-    : typeof error === 'string' && error
-      ? error
-      : 'Save Failed';
+  ) {
+    return error.message;
+  }
+
+  if (typeof error === 'string') {
+    return error;
+  }
+
+  return FALLBACK_ERROR_MESSAGE;
 };

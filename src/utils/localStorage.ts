@@ -6,7 +6,6 @@ export const getFromStorage = <T>(
 
   if (value) {
     try {
-      // we want to try and parse any JSON other it's likely a primitive.
       return JSON.parse(value);
     } catch {
       return value as T;

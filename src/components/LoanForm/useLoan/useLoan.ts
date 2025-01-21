@@ -19,7 +19,7 @@ export const convertFieldsToEmptyLoan = (fields: FieldMetadata[]): Loan => {
 export const useLoan = (fields: FieldMetadata[]) => {
   const emptyValue = convertFieldsToEmptyLoan(fields);
   const savedValue = getFromStorage<Loan>(LOAN_STORAGE_KEY) ?? {};
-  // we want to merge in case any new fields have been added since the last time the user saved
+  // we want to merge in case any new entity types have been added since the last time the user saved
   const initialLoan = deepMerge<Loan>({}, emptyValue, savedValue);
   const [loan, setLoan] = useState<Loan>(initialLoan);
 
