@@ -15,10 +15,12 @@ const DateLoanFieldInput = ({
 }: DateLoanFieldInputProps) => {
   const onComponentChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>): void => {
+      const value = event.target.value;
+
       onChange({
         errorMessage: undefined,
         hasError: false,
-        value: event.target.value,
+        value: value?.length ? value : null,
       });
     },
     [onChange]

@@ -24,7 +24,7 @@ const apiPatchCall = async (patchRecord: Partial<Loan>, value: InputValue) => {
   await sleep(2000); // 2 seconds to simulate patch
 
   // test api failures with "bad" or a number that includes "99"
-  if (value === 'bad' || value.toString().includes('99')) {
+  if (value === 'bad' || value?.toString().includes('99')) {
     throw new Error('Save failed');
   }
 };

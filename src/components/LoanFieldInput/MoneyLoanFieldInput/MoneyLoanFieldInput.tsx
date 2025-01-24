@@ -24,6 +24,14 @@ const MoneyLoanFieldInput = ({
     (stringValue: string | undefined): void => {
       const numericValue = Number(stringValue);
 
+      if (!stringValue){
+        onChange({
+          hasError: false,
+          value: null,
+        });
+        return;
+      }
+
       if (isNaN(numericValue)) {
         return;
       }

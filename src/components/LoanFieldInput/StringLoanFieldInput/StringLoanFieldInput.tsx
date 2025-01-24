@@ -22,7 +22,7 @@ const StringLoanFieldInput = ({
   const onComponentChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>): void => {
       const value = event.target.value;
-      const isValid = regex.test(value);
+      const isValid = !value?.length || regex.test(value);
 
       onChange({
         errorMessage: !isValid

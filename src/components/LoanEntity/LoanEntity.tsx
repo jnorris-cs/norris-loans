@@ -23,6 +23,7 @@ const LoanEntity = ({ entity }: LoanEntityProps) => {
         <span className="fw6 f3 mr2">{entity.name}</span>
         <button
           className="pa0 bw0 bg-transparent"
+          type="button"
           onClick={toggleFieldVisibility}
         >
           <FontAwesomeIcon icon={showFields ? faChevronDown : faChevronUp} />
